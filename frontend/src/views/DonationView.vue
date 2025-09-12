@@ -31,7 +31,7 @@ import { getDonationStatus } from '@/services/api.js';
 
 const donationStatus = ref({
   goal: 10000,
-  current: 6000,
+  current: 10000,
 });
 const loading = ref(true);
 const error = ref(null);
