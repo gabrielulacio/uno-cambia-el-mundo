@@ -30,7 +30,7 @@ const imageUrl = '/images/tarjeta-1.png';
 <style scoped lang="scss">
 .info-section {
   background-color: var(--background-color);
-  padding: 32px 0;
+  padding: 48px 0;
 }
 
 .info-container {
@@ -42,7 +42,7 @@ const imageUrl = '/images/tarjeta-1.png';
 .info-card {
   background-color: white;
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -53,7 +53,7 @@ const imageUrl = '/images/tarjeta-1.png';
 
 .info-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04);
 }
 
 .card-image {

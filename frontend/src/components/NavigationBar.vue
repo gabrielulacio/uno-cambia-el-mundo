@@ -1,13 +1,13 @@
 <template>
   <nav class="navbar">
     <div class="navbar-container">
-      <div class="rotary-logo">
+      <router-link to="/" class="rotary-logo" aria-label="Ir al inicio">
         <img src="/images/logo-rotary.png" alt="Rotary Logo" />
-      </div>
+      </router-link>
       <!-- Menú de navegación -->
       <div class="navbar-menu">
         <router-link to="/" class="navbar-link">Inicio</router-link>
-        <div class="navbar-link">Acerca de</div>
+        <router-link to="/acerca" class="navbar-link">Acerca de</router-link>
         <router-link to="/donar" class="navbar-link donate-link">
           Donar 💛
         </router-link>

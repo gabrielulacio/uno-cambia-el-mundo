@@ -158,5 +158,42 @@ const isLabelOutside = computed(() => roundedPercentage.value < 15);
   opacity: 0.7;
   animation-delay: -1.2s;
 }
+
+/* Responsive: ajustar tamaños para pantallas pequeñas */
+@media (max-width: 768px) {
+  .progress-bar-container {
+    margin: 16px auto;
+  }
+  .progress-bar {
+    height: 44px;
+    border-width: 2px;
+    padding: 4px;
+    border-radius: 20px;
+  }
+  .progress-bar-fill {
+    border-radius: 12px;
+  }
+  .progress-label {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .progress-bar-container {
+    margin: 12px auto;
+  }
+  .progress-bar {
+    height: 36px;
+    border-width: 2px;
+    padding: 3px;
+    border-radius: 16px;
+  }
+  .progress-bar-fill {
+    border-radius: 10px;
+  }
+  .progress-label {
+    font-size: 0.95rem;
+  }
+}
 </style>
 

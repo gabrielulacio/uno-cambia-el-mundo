@@ -50,7 +50,6 @@
 </script>
 
 <style scoped lang="scss">
-@use '@/assets/styles/_main' as *;
 
 .feature-cards-section {
   background-color: var(--background-color);

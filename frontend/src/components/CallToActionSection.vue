@@ -22,41 +22,40 @@
 </script>
 
 <style scoped lang="scss">
-@use '@/assets/styles/_main' as *;
 
 .cta-section {
-  background-color: #f0f4f9; // Un color de fondo suave como en la imagen
-  padding: 32px; // Menos padding vertical para una barra más compacta
+  background-color: #f0f4f9;
+  padding: 32px;
   text-align: center;
 }
 
 .cta-container {
-  max-width: 900px; // Un poco más de ancho
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* --- CAMBIOS PRINCIPALES AQUÍ --- */
 .cta-content {
   display: flex;
-  flex-direction: row;            /* 1. Cambiado de 'column' a 'row' */
-  justify-content: space-between; /* 2. Distribuye el espacio (texto a la izq, botón a la der) */
-  align-items: center;            /* 3. Alinea verticalmente los items en el centro */
+  flex-direction: row;            
+  justify-content: space-between; 
+  align-items: center;
   gap: 20px;
 }
 
 .cta-text-wrapper {
   text-align: left; /* Alinea el texto a la izquierda dentro de su contenedor */
+  padding: 24px 0;
 }
 
 .cta-main-text {
-    @include heading-3; // Un tamaño apropiado
+    @include heading-3; 
     color: var(--black);
-    margin: 0 0 4px 0; // Pequeño margen inferior
+    margin: 0 0 4px 0; 
     font-style: italic;
-    font-weight: 600; // O 'bold'
+    font-weight: 600; 
     font-family: 'Open Sans', Arial, sans-serif;
-    text-align: center; // Centra el texto
+    text-align: center;
 }
 
 /* Nueva clase para el texto secundario */
@@ -93,20 +92,19 @@
   background-color: #0052a3;
 }
 
-/* --- AJUSTES RESPONSIVE --- */
 @media (max-width: 768px) {
   .cta-section {
     padding: 40px 0;
   }
   
   .cta-content {
-    flex-direction: column; /* Vuelve a apilar en columna para móviles */
+    flex-direction: column; 
     text-align: center;
     gap: 24px;
   }
   
   .cta-text-wrapper {
-    text-align: center; /* Centra el texto en móviles */
+    text-align: center;
   }
 
   .cta-main-text {

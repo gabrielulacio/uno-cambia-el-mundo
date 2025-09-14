@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'; // Nueva vista del home
 import HelloWorldView from '../views/HelloWorldView.vue';
 import DonationView from '../views/DonationView.vue';
 import ShowcaseView from '../views/ShowcaseView.vue';
+import AboutView from '../views/AboutView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/showcase',
       name: 'showcase',
       component: ShowcaseView,
+    },
+    {
+      path: '/acerca',
+      name: 'about',
+      component: AboutView,
     },
   ],
 });
