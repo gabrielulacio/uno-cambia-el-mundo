@@ -30,7 +30,7 @@ const imageUrl = '/images/tarjeta-1.png';
 <style scoped lang="scss">
 .info-section {
   background-color: var(--background-color);
-  padding: 80px 0;
+  padding: 32px 0;
 }
 
 .info-container {

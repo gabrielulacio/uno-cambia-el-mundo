@@ -3,14 +3,19 @@
     <NavigationBar />
     <HeroSection /> 
     <InfoCard />
+    <FeatureCards />
+    <CallToActionSection />
+    <FooterSection />
   </div>
 </template>
 
 <script setup>
 import NavigationBar from '@/components/NavigationBar.vue';
 import HeroSection from '@/components/HeroSection.vue';
-import ObjectiveSection from '@/components/ObjectiveSection.vue';
 import InfoCard from '@/components/InfoCard.vue';
+import FeatureCards from '@/components/FeatureCards.vue';
+import CallToActionSection from '@/components/CallToActionSection.vue';
+import FooterSection from '@/components/FooterSection.vue';
 </script>
 
 <style scoped>
