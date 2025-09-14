@@ -1,8 +1,7 @@
 <template>
   <div class="home-container">
     <NavigationBar />
-    <HeroSection />
-    <ObjectiveSection />
+    <HeroSection /> 
     <InfoCard />
   </div>
 </template>

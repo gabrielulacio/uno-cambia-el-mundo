@@ -5,35 +5,29 @@
         <div class="card-image">
           <!-- Placeholder para la imagen médica -->
           <div class="image-placeholder">
-            <div class="stethoscope-icon">🩺</div>
+            <img v-if="imageUrl" :src="imageUrl" alt="Imagen informativa" class="image-fill" />
+            <div v-else class="stethoscope-icon">🩺</div>
           </div>
         </div>
         
         <div class="card-content">
           <div class="card-text">
             <p class="card-paragraph">
-              En la Fundación Centro Médico Rotario Dr Pablo Puky atendemos a cientos de 
-              personas cada mes. Sin embargo, nuestros equipos ya no responden como 
-              deberían, lo que limita nuestra capacidad de salvar vidas. Hoy tenemos la 
-              oportunidad de cambiar esta realidad.
-            </p>
-            
-            <p class="card-paragraph">
-              Con tu ayuda, podemos dotar al centro con nuevos equipos que marcarán la 
-              diferencia entre la esperanza y la incertidumbre.
+              Atendemos a <strong>27 mil personas</strong> al año, pero nuestros equipos ya no responden como deberían. Con <strong>tu ayuda</strong>, podemos cambiarlos y <strong>marcar la diferencia</strong> entre la esperanza y la incertidumbre.
             </p>
           </div>
         </div>
+        
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-// No props needed for this static component
+const imageUrl = '/images/tarjeta-1.png';
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .info-section {
   background-color: var(--background-color);
   padding: 80px 0;
@@ -79,17 +73,13 @@
   position: relative;
 }
 
-/* Efecto de imagen médica simulada */
-.image-placeholder::before {
-  content: '';
+/* La imagen llena el placeholder manteniendo proporción */
+.image-fill {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(23, 69, 143, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(247, 168, 27, 0.1) 0%, transparent 50%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* usa 'contain' si prefieres ver la imagen completa sin recorte */
 }
 
 .stethoscope-icon {
@@ -105,20 +95,19 @@
 }
 
 .card-text {
-  color: var(--text-color);
+  color: var(--black);
   line-height: 1.7;
 }
 
 .card-paragraph {
-  font-size: 1.1rem;
+  @include heading-4;
   margin-bottom: 20px;
   text-align: justify;
 }
 
 .card-paragraph:last-child {
   margin-bottom: 0;
-  font-weight: 500;
-  color: var(--rotary-blue);
+  color: var(--black);
 }
 
 /* Responsive */

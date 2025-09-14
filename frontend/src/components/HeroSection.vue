@@ -2,127 +2,123 @@
   <section class="hero-section">
     <div class="hero-container">
       <div class="hero-content">
-        <h1 class="hero-title">
-          <span class="uno">Uno</span><br>
-          <span class="cambia">cambia el mund</span><span class="globe">🌍</span>
-        </h1>
-        
-        <p class="hero-subtitle">
-          Alimentar, Educar y Sanar. Todo empieza con un gesto.
-        </p>
+        <div class="hero-logo">
+          <img src="/images/unocambiaelmundo-logo.png" alt="Logo de Uno Cambia el Mundo" />
+          <p class="hero-subtitle">
+            Alimentar, Educar y Sanar. Todo empieza con un gesto.
+          </p>
+        </div>
+
+        <div class="meta">
+          <p class="title-meta">Nuestra Meta</p>
+          <DonationProgressBar :goal="goal" :current="current" />
+          <p class="subtitle-meta">Cada aporte, grande o pequeño, es un paso hacia un mejor centro médico.</p>
+        </div>
       </div>
+
       
-      <!-- Elementos decorativos de fondo -->
-      <div class="hero-decoration">
-        <div class="floating-circle circle-1"></div>
-        <div class="floating-circle circle-2"></div>
-        <div class="floating-circle circle-3"></div>
-      </div>
+    
     </div>
   </section>
 </template>
 
 <script setup>
-// No props needed
+import { ref, onMounted } from 'vue';
+import DonationProgressBar from '@/components/DonationProgressBar.vue';
+import { getDonationStatus } from '@/services/api.js';
+
+// Estados reactivos
+const goal = ref(100);
+const current = ref(20); // 100% como se ve en la imagen
+const loading = ref(true);
+const error = ref(null);
+
+// Intentar cargar datos reales de la API
+onMounted(async () => {
+  try {
+    // Descomenta esto cuando la API esté lista
+    // const data = await getDonationStatus();
+    // goal.value = data.goal;
+    // current.value = data.current;
+    
+    // Por ahora usamos datos mock que muestran 100%
+    loading.value = false;
+  } catch (err) {
+    console.error('Error loading donation status:', err);
+    // Mantener valores por defecto en caso de error
+    loading.value = false;
+  }
+});
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+.title-meta {
+  @include heading-2;
+  color: var(--rotary-gold);
+}
+
+.subtitle-meta {
+  @include paragraph-semibold;
+  color: var(--white);
+}
+
 .hero-section {
-  background: linear-gradient(135deg, var(--rotary-blue) 0%, #1e5aa8 100%);
+  /* Degradado vertical: Rotary Blue (arriba) -> Azure (abajo, 80%-100%) */
+  background: linear-gradient(to bottom, var(--rotary-blue) 0%, var(--azure) 80%, var(--azure) 100%);
   min-height: 60vh;
   display: flex;
-  align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  padding: 96px 0;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2; 
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero-container {
+  
   max-width: 1200px;
   margin: 0 auto;
+  
   padding: 60px 20px;
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 2; /* sobre la imagen */
+  
+  
 }
 
 .hero-content {
   max-width: 800px;
-  margin: 0 auto;
-}
-
-.hero-title {
-  font-size: 4rem;
-  font-weight: 300;
-  color: white;
-  margin-bottom: 30px;
-  line-height: 1.1;
-}
-
-.uno {
-  font-style: italic;
-  font-weight: 300;
-  font-size: 4.5rem;
-}
-
-.cambia {
-  font-weight: 400;
-}
-
-.globe {
-  font-size: 3.5rem;
-  margin-left: 10px;
-  display: inline-block;
-  animation: rotate 6s linear infinite;
+  gap: 64px;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-subtitle {
-  font-size: 1.4rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 400;
+  @include heading-3;
+  color: var(--white);
   margin: 0;
-  letter-spacing: 0.5px;
 }
 
-/* Elementos decorativos flotantes */
-.hero-decoration {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-}
 
 .floating-circle {
   position: absolute;
   border-radius: 50%;
   background: rgba(247, 168, 27, 0.1);
   animation: float 6s ease-in-out infinite;
-}
-
-.circle-1 {
-  width: 200px;
-  height: 200px;
-  top: 10%;
-  left: 5%;
-  animation-delay: 0s;
-}
-
-.circle-2 {
-  width: 150px;
-  height: 150px;
-  top: 60%;
-  right: 10%;
-  animation-delay: 2s;
-}
-
-.circle-3 {
-  width: 100px;
-  height: 100px;
-  bottom: 20%;
-  left: 15%;
-  animation-delay: 4s;
 }
 
 /* Animaciones */

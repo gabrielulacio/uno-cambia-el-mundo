@@ -8,10 +8,11 @@
             {{ roundedPercentage }}%
           </span>
         </div>
+        <!-- En caso de label "outside", mostrarlo centrado dentro como overlay -->
+        <span v-if="isLabelOutside" class="progress-label label-center-overlay">
+          {{ roundedPercentage }}%
+        </span>
       </div>
-      <span v-if="isLabelOutside" class="progress-label label-outside">
-        {{ roundedPercentage }}%
-      </span>
     </div>
   </div>
 </template>
@@ -55,7 +56,7 @@ const isLabelOutside = computed(() => roundedPercentage.value < 15);
 <style scoped>
 .progress-bar-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 840px;
   margin: 20px auto;
   text-align: center;
 }
@@ -63,27 +64,26 @@ const isLabelOutside = computed(() => roundedPercentage.value < 15);
 .progress-bar-wrapper {
   width: 100%;
   position: relative;
-  padding-bottom: 30px;
 }
 
 .progress-bar {
   width: 100%;
-  height: 40px;
+  height: 56px;
   /* 3. El fondo de la barra (track) ahora es un tono oscuro traslúcido */
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.05);
   /* 2. El borde ahora es blanco */
   border: 3px solid var(--white);
-  border-radius: 20px;
+  border-radius: 24px;
   box-sizing: border-box;
   /* 2. Se añade el espaciado interior */
-  padding: 4px;
+  padding: 6px;
   position: relative;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  border-radius: 16px; /* Radio interno para encajar en el padding */
+  border-radius: 16px;
   transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* La transición de color ya no es necesaria aquí */
   display: flex;
   align-items: center;
@@ -117,15 +117,15 @@ const isLabelOutside = computed(() => roundedPercentage.value < 15);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.label-outside {
+/* Label centrado dentro de la barra como overlay para porcentajes bajos */
+.label-center-overlay {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  font-size: 1rem;
-  font-weight: bold;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--white);
 }
 
 /* 1. Animación de líquido corregida */
