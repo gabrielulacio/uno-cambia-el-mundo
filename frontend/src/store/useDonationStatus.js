@@ -3,7 +3,7 @@ import { getDonationStatus } from '@/services/api.js';
 
 // Fuente única de estado para la donación (meta y recaudado)
 const goal = ref(100);
-const current = ref(20);
+const current = ref(0);
 const loading = ref(false);
 const error = ref(null);
 let loadedOnce = false;
