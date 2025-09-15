@@ -5,6 +5,7 @@
     <InfoCard />
     <FeatureCards />
     <CallToActionSection />
+    <MapSection />
     <FooterSection />
   </div>
 </template>
@@ -16,6 +17,7 @@ import InfoCard from '@/components/InfoCard.vue';
 import FeatureCards from '@/components/FeatureCards.vue';
 import CallToActionSection from '@/components/CallToActionSection.vue';
 import FooterSection from '@/components/FooterSection.vue';
+import MapSection from '@/components/MapSection.vue';
 </script>
 
 <style scoped>

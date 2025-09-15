@@ -112,3 +112,36 @@ a {
     padding: 40px 0;
   }
 }
+
+/* Additional global styles can be added here */
+
+.page {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 0.5s, transform 0.5s;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.page.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 1;
+}
+
+/* src/assets/main.css */
+.slide-fade-enter-active, .slide-fade-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.slide-fade-enter-from, .slide-fade-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.slide-fade-enter-to, .slide-fade-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}

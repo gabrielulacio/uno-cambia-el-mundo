@@ -6,7 +6,7 @@
       <!-- Contenido a agregar próximamente -->
       <section class="about-hero">
         <h1 class="about-title">Acerca de</h1>
-        <p class="about-subtitle">Conocé más sobre quiénes somos y cómo esta campaña transforma vidas.</p>
+        <p class="about-subtitle">Conoce más sobre quiénes somos y cómo esta campaña transformará vidas.</p>
       </section>
 
       <!-- FAQs / Acordeón -->
