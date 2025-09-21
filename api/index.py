@@ -22,7 +22,7 @@ def get_gspread_client():
     client = gspread.authorize(creds)
     return client
 
-@app.get("/api/donation-status")
+@app.get("/donation-status")
 def get_donation_status():
     """
     Obtiene el estado de la donación (meta y actual) desde la hoja 'Status'.
@@ -40,7 +40,7 @@ def get_donation_status():
         return {"goal": 100000, "current": 75000}
 
 
-@app.get("/api/payment-methods") 
+@app.get("/payment-methods") 
 def get_payment_methods():
     """
     Obtiene la lista de métodos de pago desde la hoja 'PaymentMethods'.
@@ -66,6 +66,6 @@ def get_payment_methods():
         return []
 
 # Endpoint raíz para verificar que la API funciona
-@app.get("/api")
+@app.get("/")
 def read_root():
     return {"message": "API de 'Uno Cambia el Mundo' funcionando"}
