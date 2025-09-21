@@ -24,33 +24,22 @@ def get_gspread_client():
 
 @app.get("/donation-status")
 def get_donation_status():
-    """
-    Obtiene el estado de la donación (meta y actual) desde la hoja 'Status'.
-    """
     try:
         client = get_gspread_client()
         sheet = client.open("UnoCambiaElMundoDB").worksheet("Status")
-        
         goal = sheet.acell('B1').value
         current = sheet.acell('B2').value
-        
         return {"goal": int(goal), "current": int(current)}
     except Exception as e:
         print(f"Error fetching from Google Sheets: {e}")
         return {"goal": 100000, "current": 75000}
 
-
 @app.get("/payment-methods") 
 def get_payment_methods():
-    """
-    Obtiene la lista de métodos de pago desde la hoja 'PaymentMethods'.
-    """
     try:
         client = get_gspread_client()
         sheet = client.open("UnoCambiaElMundoDB").worksheet("PaymentMethods")
-        
         records = sheet.get_all_records()
-        
         for record in records:
             if isinstance(record.get('fields'), str):
                 try:
@@ -59,13 +48,11 @@ def get_payment_methods():
                     record['fields'] = []
             else:
                 record['fields'] = []
-
         return records
     except Exception as e:
         print(f"Error fetching from Google Sheets: {e}")
         return []
 
-# Endpoint raíz para verificar que la API funciona
 @app.get("/")
 def read_root():
     return {"message": "API de 'Uno Cambia el Mundo' funcionando"}

@@ -1,11 +1,15 @@
 import axios from 'axios';
 
+// La URL base ahora apunta a /api en producción.
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000'
+  baseURL: import.meta.env.VITE_API_URL || '/api'
 });
+
+// --- NO CAMBIES NADA DE AQUÍ PARA ABAJO ---
 
 export const getHelloWorld = async () => {
   try {
+    // La llamada ahora es relativa a /api
     const response = await api.get('/hello');
     return response.data;
   } catch (error) {
@@ -14,9 +18,9 @@ export const getHelloWorld = async () => {
   }
 };
 
-// --- NUEVA FUNCIÓN ---
 export const getDonationStatus = async () => {
   try {
+    // La llamada ahora es relativa a /api
     const response = await api.get('/donation-status');
     return response.data;
   } catch (error) {
@@ -25,11 +29,11 @@ export const getDonationStatus = async () => {
   }
 };
 
-// Obtener métodos de pago (para no exponer datos sensibles en el frontend)
 export const getPaymentMethods = async () => {
   try {
+    // La llamada ahora es relativa a /api
     const response = await api.get('/payment-methods');
-    return response.data; // Se espera un array de métodos { id, name, logo, description, fields: [{label, valueMasked, copyValue?}] }
+    return response.data;
   } catch (error) {
     console.error('Error fetching payment methods:', error);
     throw error;

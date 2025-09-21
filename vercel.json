@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "frontend/package.json",
-      "use": "@vercel/static-build"
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "frontend/dist"
+      }
     },
     {
       "src": "api/index.py",
@@ -14,18 +17,6 @@
     {
       "src": "/api/(.*)",
       "dest": "api/index.py"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "frontend/dist/assets/$1"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "frontend/dist/images/$1"
-    },
-    {
-      "src": "/icons/(.*)",
-      "dest": "frontend/dist/icons/$1"
     },
     {
       "src": "/(.*)",
