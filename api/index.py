@@ -5,7 +5,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 import json
 import os
 
-app = FastAPI()
+# Important: root_path makes FastAPI aware it's mounted at `/api` behind Vercel
+app = FastAPI(root_path="/api")
 
 app.add_middleware(
     CORSMiddleware,
@@ -56,3 +57,8 @@ def get_payment_methods():
 @app.get("/")
 def read_root():
     return {"message": "API de 'Uno Cambia el Mundo' funcionando"}
+
+# Simple health/hello endpoint used by frontend sample
+@app.get("/hello")
+def say_hello():
+    return {"message": "¡Hola desde FastAPI!"}
