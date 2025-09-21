@@ -7,13 +7,6 @@ import os
 
 app = FastAPI()
 
-# Configuración de CORS para permitir peticiones desde tu frontend
-origins = [
-    "http://localhost:5173",
-    "https://uno-cambia-el-mundo.vercel.app/",
-    "https://www.unocambiaelmundo.org/",
-    "https://unocambiaelmundo.org/"
-]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -22,18 +15,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Conexión a Google Sheets ---
 def get_gspread_client():
     scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/drive']
-    
-    # Las credenciales se leen desde una variable de entorno en Vercel
     creds_json = json.loads(os.environ.get("GOOGLE_CREDENTIALS_JSON"))
-    
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_json, scope)
     client = gspread.authorize(creds)
     return client
-
-# --- Endpoints de la API ---
 
 @app.get("/api/donation-status")
 def get_donation_status():
@@ -42,43 +29,39 @@ def get_donation_status():
     """
     try:
         client = get_gspread_client()
-        sheet = client.open("UnoCambiaElMundoDB").worksheet("Status") # Asegúrate que el nombre del archivo sea correcto
+        sheet = client.open("UnoCambiaElMundoDB").worksheet("Status")
         
         goal = sheet.acell('B1').value
         current = sheet.acell('B2').value
         
         return {"goal": int(goal), "current": int(current)}
     except Exception as e:
-        # Devuelve datos de ejemplo si falla la conexión para que la web no se rompa
         print(f"Error fetching from Google Sheets: {e}")
         return {"goal": 100000, "current": 75000}
 
 
-@app.get("/api/payment-methods")
+@app.get("/api/payment-methods") 
 def get_payment_methods():
     """
     Obtiene la lista de métodos de pago desde la hoja 'PaymentMethods'.
     """
     try:
         client = get_gspread_client()
-        sheet = client.open("UnoCambiaElMundoDB").worksheet("PaymentMethods") # Asegúrate que el nombre del archivo sea correcto
+        sheet = client.open("UnoCambiaElMundoDB").worksheet("PaymentMethods")
         
         records = sheet.get_all_records()
         
-        # Convierte el string de 'fields' a un objeto JSON real
         for record in records:
             if isinstance(record.get('fields'), str):
                 try:
                     record['fields'] = json.loads(record['fields'])
                 except json.JSONDecodeError:
-                    record['fields'] = [] # O un valor por defecto si el JSON es inválido
+                    record['fields'] = []
             else:
                 record['fields'] = []
 
-
         return records
     except Exception as e:
-        # Devuelve datos de ejemplo si falla la conexión
         print(f"Error fetching from Google Sheets: {e}")
         return []
 
