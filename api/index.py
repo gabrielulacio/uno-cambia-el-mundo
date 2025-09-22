@@ -84,7 +84,7 @@ def get_donation_status():
         client = get_gspread_client()
         ss = get_spreadsheet(client)
         sheet = ss.worksheet(SHEET_STATUS_NAME)
-        goal = _parse_int(sheet.acell("B1").value, 100000)
+        goal = _parse_int(sheet.acell("A2").value, 100000)
         current = _parse_int(sheet.acell("B2").value, 75000)
         result = {"goal": goal, "current": current}
         _set_cached("donation_status", result)
