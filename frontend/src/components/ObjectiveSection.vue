@@ -14,31 +14,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import DonationProgressBar from '@/components/DonationProgressBar.vue';
-import { getDonationStatus } from '@/services/api.js';
+import { useDonationStatus } from '@/store/useDonationStatus.js';
 
-// Estados reactivos
-const goal = ref(100000);
-const current = ref(100000); // 100% como se ve en la imagen
-const loading = ref(true);
-const error = ref(null);
+// Usa el estado compartido de donación para evitar hardcodes y duplicar lógica
+const { goal, current, loading, error, loadDonationStatus } = useDonationStatus();
 
-// Intentar cargar datos reales de la API
-onMounted(async () => {
-  try {
-    // Descomenta esto cuando la API esté lista
-    // const data = await getDonationStatus();
-    // goal.value = data.goal;
-    // current.value = data.current;
-    
-    // Por ahora usamos datos mock que muestran 100%
-    loading.value = false;
-  } catch (err) {
-    console.error('Error loading donation status:', err);
-    // Mantener valores por defecto en caso de error
-    loading.value = false;
-  }
+onMounted(() => {
+  loadDonationStatus();
 });
 </script>
 

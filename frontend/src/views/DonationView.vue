@@ -16,7 +16,7 @@
         <section v-if="!loading && !error" class="progress-section">
           <h1>Nuestra Meta</h1>
           <p>Tu donación nos acerca a nuestro objetivo.</p>
-          <DonationProgressBar :goal="donationStatus.goal" :current="donationStatus.current" />
+          <DonationProgressBar :goal="goal" :current="current" />
         </section>
 
         <section v-if="!loading && !error" class="methods-section">
@@ -61,11 +61,10 @@ import { ref, onMounted } from 'vue';
 import NavigationBar from '@/components/NavigationBar.vue';
 import FooterSection from '@/components/FooterSection.vue';
 import DonationProgressBar from '@/components/DonationProgressBar.vue';
-import { getDonationStatus, getPaymentMethods } from '@/services/api.js';
+import { getPaymentMethods } from '@/services/api.js';
 import { useDonationStatus } from '@/store/useDonationStatus.js';
 
 const { goal, current, loading: loadingDonation, error: errorDonation, loadDonationStatus } = useDonationStatus();
-const donationStatus = ref({ goal: 10000, current: 10000 });
 const paymentMethods = ref([]);
 const loading = ref(true);
 const error = ref(null);
@@ -96,47 +95,9 @@ onMounted(async () => {
   try {
     // Cargar estado de donación compartido
     await loadDonationStatus();
-    donationStatus.value = { goal: goal.value, current: current.value };
     // Obtener métodos de pago desde backend para no exponer datos sensibles
-    // const methods = await getPaymentMethods();
-    // paymentMethods.value = methods;
-    // Mock temporal si backend aún no está listo:
-    paymentMethods.value = [
-      {
-        id: 'pagomovil',
-        name: 'Pago Movil (QR)',
-        logo: '/icons/pagomovil.png',
-        description: 'Realiza el pago movil desde cualquier banco nacional',
-        fields: [
-          { label: 'Banco', valueMasked: 'Banco Mercantil'},
-          { label: 'Telefono', valueMasked: '04241234567', copyValue: '04241234567' },
-          { label: 'Cédula', valueMasked: 'V-123456789', copyValue: 'V-123456789' },
-        ],
-      },
-      {
-        id: 'binancepay',
-        name: 'Binance Pay',
-        logo: '/icons/binancepay.png',
-        description: 'Realiza una transferencia de USDT o cualquier criptomoneda via Binance Pay.',
-        fields: [
-          { label: 'Correo', valueMasked: 'prueba@rotarysc.org', copyValue: 'prueba@rotarysc.org' },
-        ],
-      },
-      {
-        id: 'Zelle',
-        name: 'Zelle',
-        logo: '/icons/zelle.png',
-        description: 'Podés acercarte al centro médico para realizar tu aporte.',
-        fields: [],
-      },
-      {
-        id: 'Zelle2',
-        name: 'Zelle',
-        logo: '/icons/zelle.png',
-        description: 'Podés acercarte al centro médico para realizar tu aporte.',
-        fields: [],
-      },
-    ];
+    const methods = await getPaymentMethods();
+    paymentMethods.value = methods;
   } catch (err) {
     error.value = err.message || 'Error desconocido';
     console.error('Error fetching data:', err);
