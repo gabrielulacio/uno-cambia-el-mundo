@@ -1,30 +1,30 @@
 <template>
   <nav class="navbar">
     <div class="navbar-container">
-      <router-link to="/" class="rotary-logo" aria-label="Ir al inicio">
-        <img src="/images/logo-rotary.png" alt="Rotary Logo" />
+      <router-link to="/" class="rotary-logo" :aria-label="$t('nav.home_aria')">
+        <img src="/images/logo-rotary.png" alt="Rotary Logo" class="nav-logo-img" />
       </router-link>
-      <!-- Menú de navegación -->
+      
       <div class="navbar-menu">
-        <router-link to="/" class="navbar-link">Inicio</router-link>
-        <router-link to="/acerca" class="navbar-link">Acerca de</router-link>
-        <router-link to="/donar" class="navbar-link donate-link">
-          Donar 💛
+        <router-link to="/" class="navbar-link">{{ $t('nav.start') }}</router-link>
+        <router-link to="/proyectos" class="navbar-link">{{ $t('nav.projects') }}</router-link>
+        <router-link to="/donar" class="navbar-link donate-btn">
+          {{ $t('nav.donate') }}
         </router-link>
       </div>
     </div>
   </nav>
 </template>
 
-<script setup>
-// No props needed for now
-</script>
-
 <style scoped lang="scss">
 .navbar {
-  background-color: var(--rotary-blue);
-  padding: 8px 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: absolute; /* Clave: Flota sobre el contenido */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100; /* Asegura que esté encima de la foto */
+  padding: 20px 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%); /* Sombra suave para leer */
 }
 
 .navbar-container {
@@ -33,39 +33,51 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 24px;
+}
+
+.nav-logo-img {
+  height: 50px; /* Controlamos la altura para que no se vea gigante */
+  width: auto;
 }
 
 .navbar-menu {
   display: flex;
   align-items: center;
-  gap: 64px;
+  gap: 40px;
 }
 
 .navbar-link {
-  color: var(--white);
+  color: var(--white); /* Texto blanco para resaltar sobre foto oscura */
   text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
   transition: opacity 0.3s ease;
-  cursor: pointer;
-  @include paragraph-regular;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
-.donate-link {
-  @include paragraph-bold;
+/* Botón de Donar Estilizado en el Menú */
+.donate-btn {
+  background: var(--rotary-gold);
+  color: var(--rotary-blue);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-shadow: none;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
-  .navbar-container {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .navbar-menu {
-    gap: 15px;
-  }
-
-  .brand-text .rotary-text {
-    font-size: 1.2rem;
-  }
+  .navbar-menu { gap: 20px; }
+  .navbar-link:not(.donate-btn) { display: none; } /* En móvil a veces ocultamos enlaces y dejamos solo Donar o Menú Hambuguesa */
 }
 </style>

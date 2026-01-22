@@ -1,0 +1,233 @@
+{
+  "nav": {
+    "start": "Inicio",
+    "projects": "Proyectos",
+    "donate": "Donar 💛",
+    "home_aria": "Ir al inicio"
+  },
+  "hero": {
+    "rotary_initiative": "Una iniciativa de",
+    "rotary_name": "Rotary San Cristóbal Dtto 4380",
+    "subtitle": "Alimentar, Educar y Sanar.<br>Únete al movimiento que transforma realidades en <b>Venezuela</b>.",
+    "cta_donate": "Hacer una Donación 💙",
+    "cta_projects": "Ver Proyectos"
+  },
+  "featured_projects": {
+    "title": "Proyectos Destacados",
+    "subtitle": "Conoce las iniciativas que están transformando realidades hoy.",
+    "view_all": "Ver todos los proyectos"
+  },
+  "brand": {
+    "eyebrow": "Nuestra Identidad",
+    "title": "Más que una campaña, un compromiso con el Táchira.",
+    "description": "<strong>\"Uno Cambia el Mundo\"</strong> es el brazo de acción social de <span class=\"text-rotary\">Rotary San Cristóbal</span>. Nacimos para canalizar la generosidad de nuestra comunidad y convertirla en obras tangibles: centros médicos, programas educativos y asistencia alimentaria.",
+    "location_label": "Sede Principal:",
+    "location_city": "San Cristóbal, Estado Táchira, Venezuela.",
+    "location_info": "Operando bajo los estándares internacionales de Rotary International.",
+    "transparency": "Transparencia en donaciones",
+    "years_service": "Años sirviendo a la comunidad",
+    "team_title": "Nuestra Junta Directiva",
+    "team_subtitle": "Liderazgo comprometido con la ética y el servicio.",
+    "team_members": [
+      {
+        "name": "Jose Yovanny Rodriguez",
+        "role": "Presidente",
+        "initials": "pres",
+        "image": "/images/team/presidente.jpg",
+        "instagram": "https://www.instagram.com/jyrodri/"
+      },
+      {
+        "name": "Felmar Leonardo Moncada",
+        "role": "Secretario",
+        "initials": "sec",
+        "image": "/images/team/secretario.jpg",
+        "instagram": "https://www.instagram.com/leomoncadasc/"
+      },
+      {
+        "name": "Nombre del Tesorero",
+        "role": "Tesorero",
+        "initials": "tes",
+        "image": "/images/team/tesorero.jpg",
+        "instagram": "https://instagram.com/perfil"
+      },
+      {
+        "name": "Felmar Leonardo Moncada",
+        "role": "Director de Proyectos",
+        "initials": "pro",
+        "image": "/images/team/director.jpg",
+        "instagram": "https://www.instagram.com/leomoncadasc/"
+      }
+    ]
+  },
+  "cta": {
+    "line1": "La salud no puede esperar.",
+    "line2": "Súmate a esta campaña y ayúdanos a lograrlo.",
+    "button": "Dona ahora 💙"
+  },
+  "features": {
+    "cards": [
+      {
+        "title": "Más atención médica digna",
+        "description": "Cada paciente recibirá la atención que merece. Sin esperas ni limitaciones."
+      },
+      {
+        "title": "Salvamos más vidas",
+        "description": "Un equipo nuevo puede ser la diferencia entre la vida y la perdida."
+      },
+      {
+        "title": "Tu donativo deja huella",
+        "description": "Cada aporte construye un futuro más sano para nuestra comunidad."
+      }
+    ]
+  },
+  "impact": {
+    "eyebrow": "Resultados Tangibles",
+    "title": "Tu generosidad en acción",
+    "subtitle": "No son solo números, son vidas transformadas en el Táchira durante el último año.",
+    "lunches": {
+      "label": "Almuerzos Servidos",
+      "detail": "En comedores comunitarios y ancianatos."
+    },
+    "patients": {
+      "label": "Pacientes Atendidos",
+      "detail": "A través de jornadas médicas gratuitas."
+    },
+    "scholarships": {
+      "label": "Becas Utiles",
+      "detail": "Kits escolares entregados en zonas rurales."
+    },
+    "transparency_title": "Compromiso de Transparencia:",
+    "transparency_text": "El 100% de las donaciones públicas financian directamente los proyectos. Los costos operativos son cubiertos por los socios del club."
+  },
+  "map": {
+    "alt": "Foto del centro médico"
+  },
+  "objectives": {
+    "title": "Nuestro Objetivo",
+    "progress_description": "Cada aporte, grande o pequeño, es un paso hacia un mejor centro médico."
+  },
+  "info_card": {
+    "text": "Atendemos a <strong>27 mil personas</strong> al año, pero nuestros equipos ya no responden como deberían. Con <strong>tu ayuda</strong>, podemos cambiarlos y <strong>marcar la diferencia</strong> entre la esperanza y la incertidumbre."
+  },
+  "footer": {
+    "desc": "Una iniciativa de <strong>Rotary San Cristóbal</strong> para transformar realidades a través de la acción unida.",
+    "explore": "Explorar",
+    "how_to_donate": "Cómo Donar",
+    "contact": "Contacto",
+    "dev_credits": "Desarrollado con ❤️ e ingenio por <strong>Rotaract Dr. Pablo Puky</strong>",
+    "devs": [
+      {
+        "name": "Gabriel Ulacio",
+        "url": "https://www.linkedin.com/in/gabriel-ulacio-28b5a3298/"
+      },
+      {
+        "name": "Gustavo Morillo",
+        "url": "https://www.linkedin.com/in/gustavo-morillo-vetancourt/"
+      },
+      {
+        "name": "Juan Paredes",
+        "url": "https://www.linkedin.com/in/juan-diego-paredes-g%C3%A1mez-21415338a/"
+      }
+    ],
+    "all_rights": "Todos los derechos reservados."
+  },
+  "donations": {
+    "title": "Realiza tu aporte 💙",
+    "subtitle": "Tu ayuda llega directo a quien lo necesita. Sigue estos pasos:",
+    "step1_title": "Elige tu método de pago",
+    "step1_desc": "Realiza la transferencia por el monto que desees.",
+    "step2_title": "Reporta tu donación",
+    "step2_desc": "¡Vital para la transparencia! Llena esto al realizar el pago.",
+    "methods": {
+      "email": "Correo:",
+      "holder": "Titular:",
+      "bank": "Banco:",
+      "phone": "Teléfono:",
+      "rif": "RIF:",
+      "pay_id": "Pay ID:"
+    },
+    "form": {
+      "project_label": "¿A qué causa estás donando?",
+      "project_placeholder": "Selecciona un proyecto",
+      "project_general": "Fondo General (Donde más se necesite)",
+      "name_label": "Tu Nombre",
+      "email_label": "Tu Correo",
+      "amount_label": "Monto",
+      "currency_label": "Moneda",
+      "reference_label": "Referencia / Nro. Comprobante",
+      "reference_placeholder": "Últimos 4-6 dígitos",
+      "anonymous_label": "Prefiero donar anónimamente (mi nombre no saldrá público)",
+      "submit_btn": "Confirmar Donación ✅",
+      "loading": "Enviando..."
+    }
+  },
+  "about": {
+    "title": "Acerca de",
+    "subtitle": "Conoce más sobre quiénes somos y cómo esta campaña transformará vidas.",
+    "faq_title": "Preguntas frecuentes",
+    "faqs": [
+      {
+        "q": "¿Quién es Rotary San Cristóbal?",
+        "a": "Rotary San Cristóbal es un club rotario local comprometido con el servicio y el desarrollo de la comunidad. Trabajamos en proyectos de salud, educación y bienestar, articulando esfuerzos con instituciones públicas y privadas para generar un impacto positivo y sostenible."
+      },
+      {
+        "q": "¿Qué es la Fundación Centro Médico Dr. Pablo Puky?",
+        "a": "La Fundación Centro Médico Dr. Pablo Puky es una organización sin fines de lucro dedicada a brindar atención médica de calidad y programas de prevención a personas y familias que más lo necesitan. Esta campaña busca fortalecer su equipamiento e infraestructura para mejorar la atención."
+      },
+      {
+        "q": "¿Cómo se usarán los fondos recaudados?",
+        "a": "Los fondos se destinarán a la adquisición y renovación de equipos médicos prioritarios y a mejoras en la capacidad de atención del centro. Publicaremos avances y resultados para asegurar transparencia en cada etapa."
+      },
+      {
+        "q": "¿Cómo puedo donar?",
+        "a": "Podés realizar tu aporte desde la página Donar, eligiendo el monto que prefieras. Cada contribución, grande o pequeña, nos acerca a la meta y tiene un impacto directo en la atención médica de la comunidad."
+      }
+    ]
+  },
+  "projects": {
+    "title": "Nuestros Proyectos",
+    "subtitle": "Transparencia y acción directa. Elige una causa y sé parte del cambio.",
+    "coming_soon": "Próximamente",
+    "coming_soon_desc": "Estamos evaluando nuevas iniciativas educativas.",
+    "list": {
+      "centro-medico": {
+        "slug": "centro-medico",
+        "title": "Fundación Centro Médico Rotario Dr. Pablo Puky",
+        "description": "Durante más de 30 años hemos sido el refugio de salud para 27.000 tachirenses al año. Hoy, necesitamos tu ayuda para renovar nuestros equipos y desbloquear una subvención internacional que multiplicará tu impacto.",
+        "category": "Salud",
+        "long_description": "<p>Imagina la angustia de una madre que necesita un eco urgente para su bebé, o de un abuelo que requiere un chequeo cardíaco inmediato, pero no tienen los recursos para una clínica privada. Durante <strong>más de 30 años</strong>, el Centro Médico Dr. Pablo Puky ha sido la respuesta para ellos.</p><p>Hemos atendido a más de <strong>27.000 personas cada año</strong>, convirtiéndonos en un pilar de salud para las comunidades más vulnerables de San Cristóbal y todo el Táchira. Pero hoy, nuestros héroes de bata blanca necesitan mejores herramientas para seguir luchando.</p><p><strong>El Desafío:</strong> Nuestros equipos han dado todo lo que tenían. Para garantizar diagnósticos precisos y salvar vidas, necesitamos una <strong>Renovación Integral</strong> urgente.</p><h3>¿Qué lograremos con tu aporte?</h3><p>Tu donación se destinará directamente a la adquisición de tecnología de última generación:</p><ul><li><strong>Salud Materna:</strong> Un nuevo <em>Ecógrafo Aplio Flex</em> de alta resolución para cuidar a las madres y sus bebés desde el primer latido.</li><li><strong>Lucha contra el Cáncer:</strong> Digitalización de Rayos X y un Mamógrafo moderno para la detección temprana del cáncer de mama.</li><li><strong>Cuidado del Corazón:</strong> Holters y electrocardiógrafos digitales para prevenir infartos y arritmias a tiempo.</li><li><strong>Diagnósticos Precisos:</strong> Modernización completa del laboratorio clínico.</li></ul><h3>Tu dinero vale x10: La Magia de Rotary</h3><p>Aquí es donde tu generosidad hace historia. Estamos aplicando a una <strong>Subvención Global de Rotary International</strong>. Necesitamos recaudar una meta local inicial (el 10% del proyecto total) para desbloquear fondos internacionales del Fondo Mundial y Distrital.</p><p>Esto significa que <strong>cada dólar que donas hoy, se multiplica</strong> para traer equipos valorados en más de $80,000 al Táchira. No solo estás donando dinero; estás invirtiendo en la salud de más de 100.000 personas y asegurando el servicio del centro por los próximos 15 años.</p><p>Ayúdanos a llegar a la meta. Ayúdanos a seguir diciendo: <strong>\"Aquí estamos para ti\"</strong>.</p>"
+      },
+      "gym-rehabilitacion": {
+        "slug": "gym-rehabilitacion",
+        "title": "Centro de Rehabilitación Activa \"Vida en Movimiento\"",
+        "description": "La vejez no debe ser sinónimo de soledad ni dependencia. Estamos creando el primer espacio clínico del Táchira diseñado científicamente para devolverle la fuerza, el equilibrio y la alegría a nuestros adultos mayores.",
+        "category": "Adulto Mayor",
+        "long_description": "<p>El envejecimiento trae consigo dos enemigos silenciosos: <strong>la pérdida de fuerza (sarcopenia) y la soledad</strong>. Muchos de nuestros adultos mayores sufren caídas prevenibles que terminan en fracturas de cadera, marcando el fin de su independencia.</p><p><strong>Queremos romper ese ciclo.</strong> En el Centro Médico Dr. Pablo Puky estamos creando el programa <em>\"Vida en Movimiento\"</em>. Olvida la idea de un gimnasio ruidoso; este es un <strong>Santuario Clínico</strong> supervisado por expertos.</p><h3>Un Espacio Integral de 100m²</h3><p>Tu aporte equipará <strong>5 Zonas Terapéuticas Especializadas</strong>:</p><ul><li><strong>Zona 1 - Movilidad:</strong> Para reducir la rigidez y preparar el cuerpo.</li><li><strong>Zona 2 - Fuerza:</strong> Combate la pérdida muscular para que recuperen su autonomía.</li><li><strong>Zona 3 - Equilibrio y Marcha:</strong> Tecnología vital para prevenir caídas y fracturas.</li><li><strong>Zona 4 - Coordinación:</strong> Ejercicios para reconectar la mente con el movimiento.</li><li><strong>Zona 5 - Psicosocial:</strong> Mesas de terapia para combatir el aislamiento y crear amistad.</li></ul><p><strong>El Impacto:</strong> Tenemos el espacio y el equipo humano experto, pero nos falta el equipamiento especializado (barras, pisos antideslizantes, implementos de marcha). Tu donación convierte un espacio vacío en un centro pionero en el Táchira.</p><p>Ayúdanos a demostrar que se puede envejecer con dignidad. <strong>Ayúdanos a ponerles movimiento a sus años.</strong></p>"
+      }
+    },
+    "ui": {
+      "card_raised": "Completado",
+      "card_goal": "Objetivo",
+      "card_view_details": "Ver Detalles"
+    }
+  },
+  "project_detail": {
+    "raised": "Completado",
+    "goal": "Objetivo",
+    "about_title": "Sobre esta iniciativa",
+    "cta_title": "¡Sé parte del cambio!",
+    "cta_desc": "Tu aporte va directamente a la compra de insumos y equipos para este proyecto.",
+    "impact_transparency": "100% Transparencia",
+    "impact_report": "Reporte directo a Rotary",
+    "donate_btn": "Donar a esta causa 💙",
+    "not_found": "Proyecto no encontrado",
+    "back_to_catalog": "Volver al catálogo"
+  },
+  "thank_you": {
+    "title": "¡Gracias por tu generosidad!",
+    "message": "Hemos recibido tu reporte de donación exitosamente.<br>Nuestro equipo verificará la transacción y te enviaremos un comprobante oficial a tu correo pronto.",
+    "next_steps_title": "¿Qué sigue ahora?",
+    "next_steps_text": "Tu aporte se convertirá en acciones reales (insumos, medicina, alimentos). Te mantendremos informado del impacto que has logrado.",
+    "back_home": "Volver al Inicio"
+  }
+}

@@ -5,21 +5,21 @@
     <main class="about-content">
       <!-- Contenido a agregar próximamente -->
       <section class="about-hero">
-        <h1 class="about-title">Acerca de</h1>
-        <p class="about-subtitle">Conoce más sobre quiénes somos y cómo esta campaña transformará vidas.</p>
+        <h1 class="about-title">{{ $t('about.title') }}</h1>
+        <p class="about-subtitle">{{ $t('about.subtitle') }}</p>
       </section>
 
       <!-- FAQs / Acordeón -->
       <section class="faq-section">
         <div class="faq-container">
-          <h2 class="faq-title">Preguntas frecuentes</h2>
+          <h2 class="faq-title">{{ $t('about.faq_title') }}</h2>
 
-          <details class="faq-item" v-for="(item, idx) in faqs" :key="idx">
+          <details class="faq-item" v-for="(item, idx) in $tm('about.faqs')" :key="idx">
             <summary class="faq-question">
-              {{ item.q }}
+              {{ $rt(item.q) }}
             </summary>
             <div class="faq-answer">
-              <p>{{ item.a }}</p>
+              <p>{{ $rt(item.a) }}</p>
             </div>
           </details>
         </div>
@@ -33,26 +33,6 @@
 <script setup>
 import NavigationBar from '@/components/NavigationBar.vue';
 import FooterSection from '@/components/FooterSection.vue';
-
-// Contenido inicial de ejemplo (podés editarlo libremente)
-const faqs = [
-  {
-    q: '¿Quién es Rotary San Cristóbal?',
-    a: 'Rotary San Cristóbal es un club rotario local comprometido con el servicio y el desarrollo de la comunidad. Trabajamos en proyectos de salud, educación y bienestar, articulando esfuerzos con instituciones públicas y privadas para generar un impacto positivo y sostenible.',
-  },
-  {
-    q: '¿Qué es la Fundación Centro Médico Dr. Pablo Puky?',
-    a: 'La Fundación Centro Médico Dr. Pablo Puky es una organización sin fines de lucro dedicada a brindar atención médica de calidad y programas de prevención a personas y familias que más lo necesitan. Esta campaña busca fortalecer su equipamiento e infraestructura para mejorar la atención.',
-  },
-  {
-    q: '¿Cómo se usarán los fondos recaudados?',
-    a: 'Los fondos se destinarán a la adquisición y renovación de equipos médicos prioritarios y a mejoras en la capacidad de atención del centro. Publicaremos avances y resultados para asegurar transparencia en cada etapa.',
-  },
-  {
-    q: '¿Cómo puedo donar?',
-    a: 'Podés realizar tu aporte desde la página Donar, eligiendo el monto que prefieras. Cada contribución, grande o pequeña, nos acerca a la meta y tiene un impacto directo en la atención médica de la comunidad.',
-  },
-];
 </script>
 
 <style scoped>
