@@ -1,3 +1,4 @@
+import './assets/styles/_root.scss';
 import './assets/main.css';
 import { createApp } from 'vue';
 import App from './App.vue';

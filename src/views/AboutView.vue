@@ -1,10 +1,11 @@
 <template>
   <div class="about-container">
     <NavigationBar />
+    <div class="header-spacer"></div>
 
     <main class="about-content">
       <!-- Contenido a agregar próximamente -->
-      <section class="about-hero">
+      <section class="about-hero container py-5">
         <h1 class="about-title">{{ $t('about.title') }}</h1>
         <p class="about-subtitle">{{ $t('about.subtitle') }}</p>
       </section>
@@ -43,15 +44,14 @@ import FooterSection from '@/components/FooterSection.vue';
   background-color: var(--background-color);
 }
 
+.header-spacer {
+  height: 110px;
+  background: var(--rotary-blue);
+}
+
 .about-content {
   flex: 1 1 auto;
   background-color: #ffffff; /* fondo blanco para el contenido */
-}
-
-.about-hero {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
 }
 
 .about-title {

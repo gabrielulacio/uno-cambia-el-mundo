@@ -1,7 +1,7 @@
 <template>
   <div class="project-card">
     <div class="card-image-wrapper">
-      <img :src="image" :alt="title" class="card-image" />
+      <img :src="getImageUrl(image)" :alt="title" class="card-image" />
       <div class="category-badge">{{ category }}</div>
     </div>
 
@@ -37,6 +37,13 @@ const props = defineProps({
   goal: Number,
   link: String
 });
+
+const getImageUrl = (name) => {
+  if (!name) return '';
+  // Si ya es una URL completa o path absoluto de public, retornarlo
+  if (name.startsWith('http') || name.startsWith('/')) return name;
+  return new URL(`../assets/images/${name}`, import.meta.url).href;
+};
 
 const progressPercentage = computed(() => {
   if (!props.goal) return 0;

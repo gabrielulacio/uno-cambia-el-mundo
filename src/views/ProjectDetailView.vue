@@ -4,7 +4,7 @@
 
     <div v-if="project" class="detail-container">
       
-      <header class="project-header" :style="{ backgroundImage: `url(${projectConfig.image})` }">
+      <header class="project-header" :style="{ backgroundImage: `url(${getImageUrl(projectConfig.image)})` }">
         <div class="overlay"></div>
         <div class="header-content">
           <div class="badge">{{ $rt(project.category) }}</div>
@@ -72,27 +72,20 @@ import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import NavigationBar from '@/components/NavigationBar.vue';
 import FooterSection from '@/components/FooterSection.vue';
+import { PROJECTS_CONFIG } from '@/constants/projects';
 
 const { tm, rt } = useI18n();
 const route = useRoute();
 const slug = computed(() => route.params.slug);
 const project = ref(null);
 
-// Solo guardamos la configuración técnica (imágenes y montos) aquí
-const projectsConfig = {
-  'centro-medico': {
-    image: '/images/hero-bg.png',
-    current: 75000,
-    goal: 100000
-  },
-  'gym-rehabilitacion': {
-    image: '/images/hero-bg2.jpg',
-    current: 1200,
-    goal: 15000
-  }
-};
+const projectConfig = computed(() => PROJECTS_CONFIG[slug.value]);
 
-const projectConfig = computed(() => projectsConfig[slug.value]);
+const getImageUrl = (name) => {
+  if (!name) return '';
+  if (name.startsWith('http') || name.startsWith('/')) return name;
+  return new URL(`../assets/images/${name}`, import.meta.url).href;
+};
 
 const loadProject = () => {
   const allProjects = tm('projects.list');

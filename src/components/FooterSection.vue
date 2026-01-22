@@ -3,7 +3,7 @@
     <div class="footer-container">
       
       <div class="footer-col brand-col">
-        <img src="/images/unocambiaelmundo-logo.png" alt="Logo" class="footer-logo" />
+        <img src="@/assets/images/unocambiaelmundo-logo.png" alt="Logo" class="footer-logo" />
         <p class="footer-desc" v-html="$t('footer.desc')"></p>
       </div>
 

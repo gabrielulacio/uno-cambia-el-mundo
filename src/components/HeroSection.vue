@@ -11,7 +11,7 @@
 
       <div class="brand-logo-container">
         <img 
-          src="/images/unocambiaelmundo-logo.png" 
+          src="@/assets/images/unocambiaelmundo-logo.png" 
           alt="Uno Cambia el Mundo" 
           class="hero-brand-logo"
         />
@@ -43,7 +43,7 @@
   color: var(--white);
   padding: 0 20px;
   /* Compensamos la altura del header fijo para que quede centrado visualmente */
-  padding-top: 60px; 
+  padding-top: 100px; 
 }
 
 /* Fondo */
@@ -51,7 +51,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('/images/hero-bg.png');
+  background-image: url('@/assets/images/hero-bg.png');
   background-size: cover;
   background-position: center;
 }

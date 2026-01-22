@@ -33,28 +33,28 @@
         "name": "Jose Yovanny Rodriguez",
         "role": "Presidente",
         "initials": "pres",
-        "image": "/images/team/presidente.jpg",
+        "image": "team/presidente.jpg",
         "instagram": "https://www.instagram.com/jyrodri/"
       },
       {
         "name": "Felmar Leonardo Moncada",
         "role": "Secretario",
         "initials": "sec",
-        "image": "/images/team/secretario.jpg",
+        "image": "team/secretario.jpg",
         "instagram": "https://www.instagram.com/leomoncadasc/"
       },
       {
         "name": "Nombre del Tesorero",
         "role": "Tesorero",
         "initials": "tes",
-        "image": "/images/team/tesorero.jpg",
+        "image": "team/tesorero.jpg",
         "instagram": "https://instagram.com/perfil"
       },
       {
         "name": "Felmar Leonardo Moncada",
         "role": "Director de Proyectos",
         "initials": "pro",
-        "image": "/images/team/director.jpg",
+        "image": "team/director.jpg",
         "instagram": "https://www.instagram.com/leomoncadasc/"
       }
     ]
@@ -89,15 +89,15 @@
       "detail": "En comedores comunitarios y ancianatos."
     },
     "patients": {
-      "label": "Pacientes Atendidos",
-      "detail": "A través de jornadas médicas gratuitas."
+      "label": "Pacientes atendidos",
+      "detail": "Consultas médicas gratuitas y medicamentos esenciales."
     },
     "scholarships": {
-      "label": "Becas Utiles",
-      "detail": "Kits escolares entregados en zonas rurales."
+      "label": "Becas escolares",
+      "detail": "Niños que regresaron al aula con útiles y uniformes."
     },
-    "transparency_title": "Compromiso de Transparencia:",
-    "transparency_text": "El 100% de las donaciones públicas financian directamente los proyectos. Los costos operativos son cubiertos por los socios del club."
+    "transparency_title": "Transparencia total:",
+    "transparency_text": "Todos los fondos son auditados y gestionados bajo los protocolos éticos de Rotary International. Cada dólar cuenta."
   },
   "map": {
     "alt": "Foto del centro médico"

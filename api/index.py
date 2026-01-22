@@ -6,20 +6,28 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from typing import Any, Dict, List, Optional
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, BackgroundTasks, Request
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr, Field
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 # Cargar variables locales
 load_dotenv()
 
+# Configuración de Rate Limiting
+limiter = Limiter(key_func=get_remote_address)
 app = FastAPI(root_path="/api")
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    # En producción, cambia "*" por tu dominio real
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -27,17 +35,23 @@ app.add_middleware(
 
 # --- MODELOS DE DATOS ---
 class PaymentReport(BaseModel):
-    project: str
-    name: str
-    email: str
-    amount: float
-    currency: str
-    reference: str
+    project: str = Field(..., min_length=3, max_length=50)
+    name: str = Field(..., min_length=2, max_length=100)
+    email: EmailStr
+    amount: float = Field(..., gt=0)
+    currency: str = Field(..., min_length=3, max_length=5)
+    reference: str = Field(..., min_length=4, max_length=100)
     anonymous: bool
 
-# --- FUNCIONES DE GOOGLE SHEETS ---
+# --- CACHE / SINGLETONS ---
+_gspread_client = None
+_spreadsheet = None
+
 def get_gspread_client():
-    # CAMBIO IMPORTANTE: Quitamos .readonly para poder ESCRIBIR
+    global _gspread_client
+    if _gspread_client:
+        return _gspread_client
+
     scope = [
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive",
@@ -52,20 +66,27 @@ def get_gspread_client():
 
     creds_json = json.loads(creds_env)
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_json, scope)
-    client = gspread.authorize(creds)
-    return client
+    _gspread_client = gspread.authorize(creds)
+    return _gspread_client
 
-def get_spreadsheet(client):
+def get_spreadsheet():
+    global _spreadsheet
+    if _spreadsheet:
+        return _spreadsheet
+    
+    client = get_gspread_client()
     sheet_id = os.environ.get("GOOGLE_SHEET_ID")
     if sheet_id:
-        return client.open_by_key(sheet_id)
-    return client.open("UnoCambiaElMundoDB")
+        _spreadsheet = client.open_by_key(sheet_id)
+    else:
+        _spreadsheet = client.open("UnoCambiaElMundoDB")
+    return _spreadsheet
 
 # --- FUNCIONES DE CORREO ---
 def send_email_notification(report: PaymentReport):
     sender = os.environ.get("EMAIL_SENDER")
     password = os.environ.get("EMAIL_PASSWORD")
-    receiver = sender # Te envías el correo a ti mismo (o cambia esto por otro email)
+    receiver = sender 
 
     if not sender or not password:
         print("⚠️ Advertencia: No hay credenciales de correo configuradas.")
@@ -97,21 +118,19 @@ def send_email_notification(report: PaymentReport):
         print("✅ Correo de notificación enviado.")
     except Exception as e:
         print(f"❌ Error enviando correo: {e}")
-        # No lanzamos error para no detener la respuesta al usuario
 
 # --- ENDPOINTS ---
 
 @app.post("/report-payment")
-def report_payment(report: PaymentReport):
+@limiter.limit("3/minute") # Limita a 3 reportes por minuto por IP para evitar spam
+def report_payment(report: PaymentReport, request: Request, background_tasks: BackgroundTasks):
     try:
-        # 1. Guardar en Google Sheets
-        client = get_gspread_client()
-        ss = get_spreadsheet(client)
+        ss = get_spreadsheet()
         
         # Busca la hoja "Reportes" o créala si no existe
         try:
             sheet = ss.worksheet("Reportes")
-        except:
+        except gspread.exceptions.WorksheetNotFound:
             sheet = ss.add_worksheet(title="Reportes", rows="1000", cols="10")
             sheet.append_row(["Fecha", "Proyecto", "Nombre", "Email", "Monto", "Moneda", "Referencia", "Anónimo", "Estado"])
 
@@ -128,8 +147,8 @@ def report_payment(report: PaymentReport):
             "Pendiente"
         ])
 
-        # 2. Enviar Correo (Nivel 1)
-        send_email_notification(report)
+        # 2. Enviar Correo en segundo plano
+        background_tasks.add_task(send_email_notification, report)
 
         return {"status": "success", "message": "Reporte recibido correctamente"}
 
@@ -139,16 +158,57 @@ def report_payment(report: PaymentReport):
 
 @app.get("/donation-status")
 def get_donation_status():
-    # (Mantén tu lógica anterior aquí o usa esta simplificada)
     try:
-        client = get_gspread_client()
-        ss = get_spreadsheet(client)
+        ss = get_spreadsheet()
         sheet = ss.worksheet("Status")
-        goal = int(sheet.acell("A2").value.replace(",",""))
-        current = int(sheet.acell("B2").value.replace(",",""))
+        # Leemos el rango A2:B2 de una vez para evitar múltiples peticiones HTTP
+        values = sheet.get("A2:B2")
+        if not values or len(values[0]) < 2:
+            raise ValueError("Datos de status insuficientes")
+            
+        goal = int(values[0][0].replace(",",""))
+        current = int(values[0][1].replace(",",""))
         return {"goal": goal, "current": current}
-    except:
+    except Exception as e:
+        print(f"Error cargando status: {e}")
         return {"goal": 100000, "current": 75000} # Fallback
+
+@app.get("/payment-methods")
+def get_payment_methods():
+    # Esto permite mover la configuración al backend si se desea a futuro
+    # Por ahora devolvemos la estructura estática pero centralizada
+    return {
+        "methods": [
+            {
+                "id": "zelle",
+                "name": "Zelle",
+                "icon": "🇺🇸",
+                "details": [
+                    {"label": "donations.methods.email", "value": "zelle@rotarysc.org", "copyable": True},
+                    {"label": "donations.methods.holder", "value": "Rotary San Cristóbal", "copyable": False}
+                ]
+            },
+            {
+                "id": "pagomovil",
+                "name": "Pago Móvil",
+                "icon": "⿽",
+                "details": [
+                    {"label": "donations.methods.bank", "value": "Bancamiga (0172)", "copyable": False},
+                    {"label": "donations.methods.phone", "value": "04141234567", "copyable": True},
+                    {"label": "donations.methods.rif", "value": "J-123456789", "copyable": True}
+                ]
+            },
+            {
+                "id": "binance",
+                "name": "Binance Pay",
+                "icon": "🔶",
+                "details": [
+                    {"label": "donations.methods.pay_id", "value": "123456789", "copyable": True},
+                    {"label": "donations.methods.email", "value": "binance@rotarysc.org", "copyable": False}
+                ]
+            }
+        ]
+    }
 
 @app.get("/")
 def read_root():

@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar" :class="{ 'navbar-solid': isSolid }">
     <div class="navbar-container">
       <router-link to="/" class="rotary-logo" :aria-label="$t('nav.home_aria')">
-        <img src="/images/logo-rotary.png" alt="Rotary Logo" class="nav-logo-img" />
+        <img src="@/assets/images/logo-rotary.png" alt="Rotary Logo" class="nav-logo-img" />
       </router-link>
       
       <div class="navbar-menu">
@@ -16,6 +16,15 @@
   </nav>
 </template>
 
+<script setup>
+defineProps({
+  isSolid: {
+    type: Boolean,
+    default: false
+  }
+});
+</script>
+
 <style scoped lang="scss">
 .navbar {
   position: absolute; /* Clave: Flota sobre el contenido */
@@ -23,8 +32,15 @@
   left: 0;
   width: 100%;
   z-index: 100; /* Asegura que esté encima de la foto */
-  padding: 20px 0;
+  padding: 24px 0 32px; /* Más padding, especialmente abajo */
   background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%); /* Sombra suave para leer */
+  transition: background-color 0.3s ease;
+}
+
+.navbar-solid {
+  background: var(--rotary-blue) !important;
+  position: relative;
+  padding: 16px 0; /* Un poco más compacta si es sólida */
 }
 
 .navbar-container {

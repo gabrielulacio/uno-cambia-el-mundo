@@ -4,7 +4,7 @@
 
     <div class="header-spacer"></div>
 
-    <main class="container">
+    <main class="container py-5">
       <div class="donation-layout">
         
         <section class="payment-methods-col">
@@ -23,66 +23,33 @@
             </div>
 
             <div class="methods-accordion">
-              
-              <div class="method-card" :class="{ active: activeMethod === 'zelle' }" @click="activeMethod = 'zelle'">
+              <div 
+                v-for="method in paymentMethods" 
+                :key="method.id"
+                class="method-card" 
+                :class="{ active: activeMethod === method.id }" 
+                @click="activeMethod = method.id"
+              >
                 <div class="method-header">
-                  <span class="method-icon">🇺🇸</span>
-                  <span class="method-name">Zelle</span>
+                  <span class="method-icon">{{ method.icon }}</span>
+                  <span class="method-name">{{ method.name }}</span>
                   <span class="arrow-icon">▼</span>
                 </div>
-                <div class="method-details" v-if="activeMethod === 'zelle'">
-                  <div class="detail-row">
-                    <span class="label">{{ $t('donations.methods.email') }}</span>
-                    <span class="value copyable" @click="copy('zelle@rotarysc.org')">zelle@rotarysc.org 📋</span>
-                  </div>
-                  <div class="detail-row">
-                    <span class="label">{{ $t('donations.methods.holder') }}</span>
-                    <span class="value">Rotary San Cristóbal</span>
+                <div class="method-details" v-if="activeMethod === method.id">
+                  <div v-for="(detail, index) in method.details" :key="index" class="detail-row">
+                    <span class="label">{{ $t(detail.label) }}</span>
+                    <span 
+                      class="value" 
+                      :class="{ copyable: detail.copyable }"
+                      @click="detail.copyable ? copy(detail.value) : null"
+                    >
+                      {{ detail.value }} {{ detail.copyable ? '📋' : '' }}
+                    </span>
                   </div>
                 </div>
               </div>
-
-              <div class="method-card" :class="{ active: activeMethod === 'pagomovil' }" @click="activeMethod = 'pagomovil'">
-                <div class="method-header">
-                  <span class="method-icon">🇻🇪</span>
-                  <span class="method-name">Pago Móvil</span>
-                  <span class="arrow-icon">▼</span>
-                </div>
-                <div class="method-details" v-if="activeMethod === 'pagomovil'">
-                  <div class="detail-row">
-                    <span class="label">{{ $t('donations.methods.bank') }}</span>
-                    <span class="value">Bancamiga (0172)</span>
-                  </div>
-                  <div class="detail-row">
-                    <span class="label">{{ $t('donations.methods.phone') }}</span>
-                    <span class="value copyable" @click="copy('04141234567')">0414-123-4567 📋</span>
-                  </div>
-                  <div class="detail-row">
-                    <span class="label">{{ $t('donations.methods.rif') }}</span>
-                    <span class="value copyable" @click="copy('J-123456789')">J-12345678-9 📋</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="method-card" :class="{ active: activeMethod === 'binance' }" @click="activeMethod = 'binance'">
-                <div class="method-header">
-                  <span class="method-icon">🔶</span>
-                  <span class="method-name">Binance Pay</span>
-                  <span class="arrow-icon">▼</span>
-                </div>
-                <div class="method-details" v-if="activeMethod === 'binance'">
-                  <div class="detail-row">
-                    <span class="label">{{ $t('donations.methods.pay_id') }}</span>
-                    <span class="value copyable" @click="copy('123456789')">123456789 📋</span>
-                  </div>
-                  <div class="detail-row">
-                    <span class="label">{{ $t('donations.methods.email') }}</span>
-                    <span class="value">binance@rotarysc.org</span>
-                  </div>
-                </div>
-              </div>
-
             </div>
+
           </div>
         </section>
 
@@ -164,15 +131,18 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import axios from 'axios';
+import { reportPayment, getPaymentMethods } from '@/services/api';
+import { useNotifications } from '@/store/useNotifications';
 import NavigationBar from '@/components/NavigationBar.vue';
 import FooterSection from '@/components/FooterSection.vue';
 
 const route = useRoute();
 const router = useRouter();
+const { showToast } = useNotifications();
 
-const activeMethod = ref('zelle'); // Método abierto por defecto
+const activeMethod = ref('zelle'); 
 const loading = ref(false);
+const paymentMethods = ref([]);
 
 const form = ref({
   project: '',
@@ -185,27 +155,57 @@ const form = ref({
 });
 
 // Al cargar, revisar si venimos de un proyecto específico
-onMounted(() => {
+onMounted(async () => {
   if (route.query.project) {
     form.value.project = route.query.project;
   } else {
     form.value.project = 'fondo-general';
   }
+
+  try {
+    const data = await getPaymentMethods();
+    if (data?.methods) {
+      paymentMethods.value = data.methods;
+    }
+  } catch (error) {
+    console.error("Error cargando métodos:", error);
+    // Fallback local robusto por si el API falla (offline o error servidor)
+    paymentMethods.value = [
+      {
+        id: "zelle",
+        name: "Zelle",
+        icon: "🇺🇸",
+        details: [
+          { label: "donations.methods.email", value: "zelle@rotarysc.org", copyable: true },
+          { label: "donations.methods.holder", value: "Rotary San Cristóbal", copyable: false }
+        ]
+      },
+      {
+        id: "pagomovil",
+        name: "Pago Móvil",
+        icon: "⿽",
+        details: [
+          { label: "donations.methods.bank", value: "Bancamiga (0172)", copyable: false },
+          { label: "donations.methods.phone", value: "04141234567", copyable: true },
+          { label: "donations.methods.rif", value: "J-123456789", copyable: true }
+        ]
+      }
+    ];
+  }
 });
+
 
 // Función simple de copiar
 const copy = (text) => {
   navigator.clipboard.writeText(text);
-  alert('Copiado: ' + text);
+  showToast('Copiado: ' + text, 'info');
 };
 
 const submitReport = async () => {
   loading.value = true;
   
   try {
-    // LLAMADA REAL AL BACKEND
-    // Gracias al proxy en vite.config.js, '/api' se redirige a tu Python local
-    await axios.post('/api/report-payment', form.value);
+    await reportPayment(form.value);
     
     // Si todo sale bien:
     setTimeout(() => {
@@ -216,10 +216,11 @@ const submitReport = async () => {
   } catch (error) {
     console.error("Error enviando reporte:", error);
     loading.value = false;
-    alert("Hubo un error enviando el reporte. Por favor intenta de nuevo.");
+    showToast("Hubo un error enviando el reporte. Por favor intenta de nuevo.", "error");
   }
 };
 </script>
+
 
 <style scoped lang="scss">
 .donation-page {
@@ -228,14 +229,8 @@ const submitReport = async () => {
 }
 
 .header-spacer {
-  height: 80px;
+  height: 110px; /* Aumentado de 80px para dar espacio al nuevo padding del Navbar */
   background: var(--rotary-blue);
-}
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 20px;
 }
 
 .page-title {

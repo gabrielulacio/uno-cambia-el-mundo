@@ -13,10 +13,10 @@
           :title="project.title"
           :description="project.description"
           :category="project.category"
-          :image="projectsConfig[project.slug]?.image || '/images/hero-bg.png'"
+          :image="PROJECTS_CONFIG[project.slug]?.image || 'hero-bg.png'"
           :link="`/proyectos/${project.slug}`"
-          :goal="projectsConfig[project.slug]?.goal || 5000"
-          :current="projectsConfig[project.slug]?.current || 1200"
+          :goal="PROJECTS_CONFIG[project.slug]?.goal || 5000"
+          :current="PROJECTS_CONFIG[project.slug]?.current || 1200"
         />
       </div>
 
@@ -33,21 +33,9 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ProjectCard from './ProjectCard.vue';
+import { PROJECTS_CONFIG } from '@/constants/projects';
 
 const { tm } = useI18n();
-
-const projectsConfig = {
-  'centro-medico': {
-    image: '/images/hero-bg.png',
-    current: 75000,
-    goal: 100000
-  },
-  'gym-rehabilitacion': {
-    image: '/images/hero-bg2.jpg',
-    current: 1200,
-    goal: 15000
-  }
-};
 
 const featuredProjects = computed(() => {
   const allProjects = tm('projects.list');
@@ -60,12 +48,6 @@ const featuredProjects = computed(() => {
 .featured-section {
   padding: 80px 0;
   background-color: #fff;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
 .section-header {

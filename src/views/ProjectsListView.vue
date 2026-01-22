@@ -18,9 +18,9 @@
           :title="$rt(proj.title)"
           :description="$rt(proj.description)"
           :category="$rt(proj.category)"
-          :image="projectsConfig[slug]?.image"
-          :current="projectsConfig[slug]?.current"
-          :goal="projectsConfig[slug]?.goal"
+          :image="PROJECTS_CONFIG[slug]?.image"
+          :current="PROJECTS_CONFIG[slug]?.current"
+          :goal="PROJECTS_CONFIG[slug]?.goal"
           :link="`/proyectos/${slug}`"
         />
 
@@ -41,19 +41,7 @@
 import NavigationBar from '@/components/NavigationBar.vue';
 import ProjectCard from '@/components/ProjectCard.vue';
 import FooterSection from '@/components/FooterSection.vue';
-
-const projectsConfig = {
-  'centro-medico': {
-    image: '/images/hero-bg.png',
-    current: 75000,
-    goal: 100000
-  },
-  'gym-rehabilitacion': {
-    image: '/images/hero-bg2.jpg',
-    current: 1200,
-    goal: 15000
-  }
-};
+import { PROJECTS_CONFIG } from '@/constants/projects';
 </script>
 
 <style scoped lang="scss">
