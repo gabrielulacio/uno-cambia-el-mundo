@@ -16,6 +16,16 @@
               <small>{{ $t('brand.location_info') }}</small>
             </div>
           </div>
+
+          <a href="https://www.instagram.com/rotary_sc/" target="_blank" class="instagram-cta">
+            <div class="icon-ig">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </div>
+            <div class="cta-text">
+              <strong>{{ $t('brand.follow_us_ig') }}</strong>
+              <p>@rotary_sc</p>
+            </div>
+          </a>
         </div>
 
         <div class="intro-visual">
@@ -44,8 +54,14 @@
              rel="noopener noreferrer"
              class="team-card">
             <div class="avatar-container">
-              <img v-if="member.image" :src="member.image" :alt="member.name" class="member-photo" />
-              <div v-else class="avatar-placeholder">{{ member.initials }}</div>
+              <img 
+                v-if="member.image" 
+                :src="member.image" 
+                :alt="member.name" 
+                class="member-photo"
+                @error="(e) => (e.target.style.display = 'none')"
+              />
+              <div class="avatar-placeholder">{{ member.initials }}</div>
             </div>
             <div class="member-info">
               <h4>{{ member.name }}</h4>
@@ -138,6 +154,48 @@
   }
 }
 
+.instagram-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  text-decoration: none;
+  color: var(--rotary-blue);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #e4405f;
+    background: #fff5f7;
+    transform: translateX(5px);
+    
+    .icon-ig {
+      color: #e4405f;
+    }
+  }
+
+  .icon-ig {
+    display: flex;
+    align-items: center;
+    color: #555;
+    transition: color 0.3s ease;
+  }
+
+  .cta-text {
+    strong {
+      display: block;
+      font-size: 1rem;
+    }
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  }
+}
+
 /* Visual Stats */
 .intro-visual {
   display: flex;
@@ -226,6 +284,7 @@
   width: 80px;
   height: 80px;
   flex-shrink: 0;
+  position: relative;
 }
 
 .member-photo {
@@ -234,6 +293,9 @@
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--rotary-blue);
+  position: relative;
+  z-index: 2;
+  background-color: white;
 }
 
 .avatar-placeholder {
@@ -248,6 +310,10 @@
   font-weight: 700;
   font-size: 1.2rem;
   text-transform: uppercase;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .member-info h4 {

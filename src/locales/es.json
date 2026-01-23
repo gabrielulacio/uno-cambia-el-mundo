@@ -3,7 +3,8 @@
     "start": "Inicio",
     "projects": "Proyectos",
     "donate": "Donar 💛",
-    "home_aria": "Ir al inicio"
+    "home_aria": "Ir al inicio",
+    "instagram_aria": "Síguenos en Instagram"
   },
   "hero": {
     "rotary_initiative": "Una iniciativa de",
@@ -24,6 +25,7 @@
     "location_label": "Sede Principal:",
     "location_city": "San Cristóbal, Estado Táchira, Venezuela.",
     "location_info": "Operando bajo los estándares internacionales de Rotary International.",
+    "follow_us_ig": "Síguenos en Instagram",
     "transparency": "Transparencia en donaciones",
     "years_service": "Años sirviendo a la comunidad",
     "team_title": "Nuestra Junta Directiva",
@@ -33,28 +35,28 @@
         "name": "Jose Yovanny Rodriguez",
         "role": "Presidente",
         "initials": "pres",
-        "image": "team/presidente.jpg",
+        "image": "/team/presidente.jpg",
         "instagram": "https://www.instagram.com/jyrodri/"
       },
       {
         "name": "Felmar Leonardo Moncada",
         "role": "Secretario",
         "initials": "sec",
-        "image": "team/secretario.jpg",
+        "image": "/team/secretario.jpg",
         "instagram": "https://www.instagram.com/leomoncadasc/"
       },
       {
-        "name": "Nombre del Tesorero",
+        "name": "Maria del Mar Carrero",
         "role": "Tesorero",
         "initials": "tes",
-        "image": "team/tesorero.jpg",
+        "image": "/team/tesorero.jpg",
         "instagram": "https://instagram.com/perfil"
       },
       {
         "name": "Felmar Leonardo Moncada",
         "role": "Director de Proyectos",
         "initials": "pro",
-        "image": "team/director.jpg",
+        "image": "/team/director.jpg",
         "instagram": "https://www.instagram.com/leomoncadasc/"
       }
     ]

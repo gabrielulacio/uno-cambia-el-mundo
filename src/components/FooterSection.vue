@@ -20,7 +20,13 @@
         <h4>{{ $t('footer.contact') }}</h4>
         <p>San Cristóbal, Táchira.</p>
         <a href="mailto:info@rotarysc.org" class="contact-link">info@rotarysc.org</a>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/rotary_sc/" target="_blank" class="social-link" :aria-label="$t('nav.instagram_aria')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            <span>@rotary_sc</span>
+          </a>
         </div>
+      </div>
     </div>
     
     <div class="dev-credits">
@@ -101,6 +107,38 @@ h4 {
   transition: opacity 0.2s;
 
   &:hover { opacity: 1; color: var(--rotary-gold); }
+}
+
+.footer-social {
+  margin-top: 20px;
+  
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--white);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--rotary-gold);
+    color: var(--rotary-blue);
+    transform: translateY(-2px);
+  }
+
+  svg {
+    stroke-width: 2.5px;
+  }
 }
 
 /* --- ESTILOS NUEVOS PARA CRÉDITOS --- */
