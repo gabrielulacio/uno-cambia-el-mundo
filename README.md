@@ -75,6 +75,13 @@ Si necesitas probar la API localmente con una base de datos real:
 3. Instala dependencias: `pip install -r requirements.txt`.
 4. Define las variables de entorno en un archivo `.env` (credenciales de Google Cloud).
 
+### Paso 4: Ejecutar el Backend
+Con el entorno virtual activado, ejecuta:
+```bash
+python -m uvicorn api.index:app --reload --port 8000
+```
+La API estará disponible en `http://localhost:8000`. El frontend está configurado para comunicarse con la API en este puerto durante el desarrollo.
+
 ## 🚀 Despliegue
 Este repositorio está optimizado para **Vercel**. Cualquier cambio en la rama `main` disparará un despliegue automático que gestiona tanto el frontend estático como las funciones serverless de la API.
 
