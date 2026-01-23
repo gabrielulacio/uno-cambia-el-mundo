@@ -1,5 +1,6 @@
 import { createI18n } from 'vue-i18n';
 import es from './locales/es.json';
+import en from './locales/en.json';
 
 const i18n = createI18n({
   legacy: false, // Usar Composition API
@@ -8,7 +9,8 @@ const i18n = createI18n({
   warnHtmlInMessage: false,
   warnHtmlMessage: false,
   messages: {
-    es
+    es,
+    en
   }
 });
 

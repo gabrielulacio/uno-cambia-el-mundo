@@ -1,127 +1,90 @@
-# Uno Cambia el Mundo
+# Uno Cambia el Mundo (UCEM) 💛
 
-Sitio web y API para la campaña de recaudación de fondos de Rotary San Cristóbal para la Fundación Centro Médico Rotario Dr. Pablo Puky.
+**Uno Cambia el Mundo** es la plataforma oficial de recaudación y gestión de proyectos sociales de **Rotary San Cristóbal (Dtto 4380)**. Diseñada para conectar la generosidad de la comunidad con las necesidades más urgentes del Estado Táchira, Venezuela, en áreas de salud, alimentación y educación.
 
-Este monorepo contiene:
+## 🚀 Características principales
 
-- Frontend: Vue 3 + Vite (`frontend/`)
-- API (Producción en Vercel): FastAPI (`api/index.py`)
-- Infra de despliegue: `vercel.json`
+- **Gestión de Proyectos:** Visualización detallada de iniciativas enfocadas en el impacto social.
+- **Reporte de Donaciones:** Sistema transparente para el reporte y seguimiento de aportes.
+- **Multilingüe:** Soporte completo para español e inglés. (i18n ready).
+- **Backend Serverless:** API robusta integrada con Google Sheets para gestión de datos en tiempo real.
 
-## Arquitectura y estructura
+## 🛠️ Stack Tecnológico
 
-```
+### Frontend
+- **Framework:** [Vue 3](https://vuejs.org/) (Composition API)
+- **Herramienta de Build:** [Vite](https://vitejs.dev/)
+- **Gestión de Estado:** Componibles reactivos (Custom Stores)
+- **Internacionalización:** [Vue I18n](https://vue-i18n.intlify.dev/)
+- **Estilos:** Sass / SCSS (Arquitectura modular)
+- **Animaciones:** Canvas Confetti
+
+### Backend
+- **Lenguaje:** Python 3.11+
+- **Framework:** [FastAPI](https://fastapi.tiangolo.com/)
+- **Persistencia:** Google Sheets API (vía `gspread`)
+- **Seguridad:** Rate Limiting con [SlowAPI](https://slowapi.readthedocs.io/)
+- **Despliegue:** [Vercel Functions](https://vercel.com/docs/functions)
+
+## 📁 Estructura del Proyecto
+
+```text
 .
-├─ api/
-│  └─ index.py           # FastAPI para Vercel Serverless Functions
-├─ frontend/
-│  ├─ src/
-│  ├─ index.html
-│  ├─ package.json
-│  └─ vite.config.js
-├─ backend/              # Proyecto FastAPI separado (no usado en Vercel)
-├─ vercel.json           # Builds + rutas para Vercel (SPA + API)
-└─ requirements.txt      # Dependencias Python para la API
+├── api/                # Backend (FastAPI para Vercel Serverless)
+│   └── index.py        # Endpoints y lógica de negocio
+├── public/             # Archivos estáticos públicos
+├── src/                # Código fuente del Frontend
+│   ├── assets/         # Estilos globales, imágenes e iconos
+│   ├── components/     # Componentes de interfaz (UI)
+│   ├── constants/      # Datos constantes (proyectos, configuraciones)
+│   ├── locales/        # Diccionarios de traducción (i18n)
+│   ├── router/         # Rutas de la aplicación (Vue Router)
+│   ├── services/       # Clientes HTTP (Axios)
+│   ├── store/          # Lógica de estado y lógica de negocio reactiva
+│   └── views/          # Vistas (páginas) principales
+├── vercel.json         # Configuración de infraestructura (Builds & Routes)
+└── requirements.txt    # Dependencias de Python
 ```
 
-## Endpoints (Producción)
+## 💻 Instalación y Desarrollo Local
 
-- `GET /api/hello` → salud de la API
-- `GET /api/donation-status` → { goal: number, current: number }
-- `GET /api/payment-methods` → Lista de métodos de pago (puede depender de Google Sheets)
+### Requisitos
+- **Node.js:** Versión 20.19.0 o superior.
+- **Python:** Versión 3.11 o superior.
+- **Git:** Para clonar el repositorio.
 
-Notas:
-- Si no configuras las credenciales de Google, la API devuelve valores de fallback para evitar fallos.
+### Paso 1: Clonar y configurar dependencias
+```bash
+git clone https://github.com/gabrielulacio/uno-cambia-el-mundo.git
+cd uno-cambia-el-mundo
 
-## Desarrollo local
-
-Requisitos:
-- Node.js 20.x (o superior compatible)
-- Python 3.11+ (recomendado)
-
-### 1) API local (FastAPI)
-
-Instalar dependencias Python (desde la raíz del repo):
-
-```powershell
-pip install -r .\requirements.txt
-```
-
-Opcional: exporta credenciales de Google para obtener datos reales (si no, devuelve mocks):
-
-```powershell
-$env:GOOGLE_CREDENTIALS_JSON = Get-Content -Raw -Path "C:\ruta\a\service-account.json"
-```
-
-Levantar la API (recomendado con root-path para emular producción):
-
-```powershell
-uvicorn api.index:app --reload --host 127.0.0.1 --port 8000 --root-path /api
-```
-
-Pruebas rápidas:
-
-- http://127.0.0.1:8000/api/hello
-- http://127.0.0.1:8000/api/donation-status
-
-Alternativa sin `--root-path` (rutas en `/`):
-
-```powershell
-uvicorn api.index:app --reload --host 127.0.0.1 --port 8000
-```
-
-En ese caso, usa `VITE_API_URL=http://127.0.0.1:8000` en el frontend (sin `/api`).
-
-### 2) Frontend local (Vite + Vue 3)
-
-Instalar dependencias y ejecutar:
-
-```powershell
-cd frontend
+# Instalar dependencias del frontend
 npm install
-# Si corriste la API con --root-path /api
-$env:VITE_API_URL = "http://127.0.0.1:8000/api"
-# Si corriste la API sin --root-path, usa en cambio:
-# $env:VITE_API_URL = "http://127.0.0.1:8000"
+```
+
+### Paso 2: Ejecutar el Frontend
+El servidor de desarrollo de Vite se iniciará en `http://localhost:5173`.
+```bash
 npm run dev
 ```
 
-Abrir: http://localhost:5173
+### Paso 3: Configurar el Backend (Opcional)
+Si necesitas probar la API localmente con una base de datos real:
+1. Crea un entorno virtual: `python -m venv venv`.
+2. Actívalo: `source venv/bin/activate` (o `venv\Scripts\activate` en Windows).
+3. Instala dependencias: `pip install -r requirements.txt`.
+4. Define las variables de entorno en un archivo `.env` (credenciales de Google Cloud).
 
-## Despliegue en Vercel
+## 🚀 Despliegue
+Este repositorio está optimizado para **Vercel**. Cualquier cambio en la rama `main` disparará un despliegue automático que gestiona tanto el frontend estático como las funciones serverless de la API.
 
-El archivo `vercel.json` define dos builds y el enrutamiento:
+---
 
-- Frontend (static build):
-	- `@vercel/static-build` con `src: frontend/package.json`
-	- `config.distDir: "dist"` (Vite genera `dist`)
-	- Rutas: `{ "handle": "filesystem" }` y fallback SPA → `/(.*) -> /index.html`
-- API (serverless Python):
-	- `@vercel/python` sobre `api/index.py`
-	- Rutas: `/api$` y `/api/(.*)` → `api/index.py`
+## 🤝 Contribuciones
+Este es un proyecto impulsado por el voluntariado de **Rotary San Cristóbal**. Si deseas contribuir al código, por favor abre un *Issue* o envía un *Pull Request*.
 
-Variables de entorno en Vercel (Settings → Environment Variables):
+## 📄 Licencia
+Este proyecto está bajo la [Licencia MIT](LICENSE).
 
-- `GOOGLE_CREDENTIALS_JSON` (Production y Preview) con el contenido JSON de tu service account.
-
-Notas:
-- El frontend en producción usa por defecto `baseURL: '/api'` (`VITE_API_URL` es opcional). No definas `VITE_API_URL` en producción si llamas a la API del mismo dominio.
-- El proyecto especifica engines de Node en `frontend/package.json`. Vercel suele respetarlo automáticamente.
-
-## Solución de problemas
-
-- 404 en `/` (raíz):
-	- Revisa que el deploy haya tomado el `vercel.json` y que el fallback `/(.*) -> /index.html` exista.
-	- En el Deployment, verifica que `index.html` aparece en "Static Files".
-	- Forza un redeploy del último commit y limpia caché del navegador.
-
-- 404 en `/api`:
-	- Verifica las rutas `/api$` y `/api/(.*)` en `vercel.json`.
-	- Asegura que la app usa `FastAPI(root_path="/api")` (ya configurado en `api/index.py`).
-
-- Datos de Google Sheets:
-	- Si falta `GOOGLE_CREDENTIALS_JSON`, la API devuelve valores mock. Añádelo en Vercel o como variable local si quieres datos reales.
-
-## Licencia
-
-MIT © 2025 Gabriel Ulacio
+---
+*Desarrollado con ❤️ para la comunidad del Táchira.*

@@ -8,6 +8,12 @@
       <div class="navbar-menu">
         <router-link to="/" class="navbar-link">{{ $t('nav.start') }}</router-link>
         <router-link to="/proyectos" class="navbar-link">{{ $t('nav.projects') }}</router-link>
+        
+        <!-- Selector de Idioma -->
+        <button @click="toggleLanguage" class="navbar-link lang-switcher" aria-label="Cambiar idioma">
+          {{ currentLanguage }}
+        </button>
+
         <a href="https://www.instagram.com/rotary_sc/" target="_blank" class="navbar-link instagram-icon" :aria-label="$t('nav.instagram_aria')">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
         </a>
@@ -20,12 +26,23 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { locale } = useI18n();
+
 defineProps({
   isSolid: {
     type: Boolean,
     default: false
   }
 });
+
+const currentLanguage = computed(() => locale.value.toUpperCase());
+
+const toggleLanguage = () => {
+  locale.value = locale.value === 'es' ? 'en' : 'es';
+};
 </script>
 
 <style scoped lang="scss">
@@ -73,9 +90,27 @@ defineProps({
   font-size: 0.95rem;
   transition: opacity 0.3s ease;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 
   &:hover {
     opacity: 0.8;
+  }
+}
+
+.lang-switcher {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  min-width: 38px;
+  text-align: center;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--white);
   }
 }
 
