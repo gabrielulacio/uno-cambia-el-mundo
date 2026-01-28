@@ -34,7 +34,7 @@
             <span class="stat-label">{{ $t('brand.transparency') }}</span>
           </div>
           <div class="stat-card">
-            <span class="stat-number">+50</span>
+            <span class="stat-number">+85</span>
             <span class="stat-label">{{ $t('brand.years_service') }}</span>
           </div>
         </div>

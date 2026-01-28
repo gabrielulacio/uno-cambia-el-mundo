@@ -11,7 +11,7 @@
         <div class="metric-card">
           <div class="icon-wrapper">🍲</div>
           <div class="metric-content">
-            <span class="number">+1,200</span>
+            <span class="number">+750</span>
             <span class="label">{{ $t('impact.lunches.label') }}</span>
             <p class="detail">{{ $t('impact.lunches.detail') }}</p>
           </div>
@@ -20,7 +20,7 @@
         <div class="metric-card">
           <div class="icon-wrapper">💊</div>
           <div class="metric-content">
-            <span class="number">+350</span>
+            <span class="number">+1,200</span>
             <span class="label">{{ $t('impact.patients.label') }}</span>
             <p class="detail">{{ $t('impact.patients.detail') }}</p>
           </div>
@@ -29,7 +29,7 @@
         <div class="metric-card">
           <div class="icon-wrapper">📚</div>
           <div class="metric-content">
-            <span class="number">85</span>
+            <span class="number">+500</span>
             <span class="label">{{ $t('impact.scholarships.label') }}</span>
             <p class="detail">{{ $t('impact.scholarships.detail') }}</p>
           </div>

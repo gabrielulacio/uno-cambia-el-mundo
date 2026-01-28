@@ -8,7 +8,7 @@
   },
   "hero": {
     "rotary_initiative": "Una iniciativa de",
-    "rotary_name": "Rotary San Cristóbal Dtto 4380",
+    "rotary_name": "Rotary San Cristóbal (Dtto 4380)",
     "subtitle": "Alimentar, Educar y Sanar.<br>Únete al movimiento que transforma realidades en <b>Venezuela</b>.",
     "cta_donate": "Hacer una Donación 💙",
     "cta_projects": "Ver Proyectos"
@@ -23,7 +23,7 @@
     "title": "Más que una campaña, un compromiso con el Táchira.",
     "description": "<strong>\"Uno Cambia el Mundo\"</strong> es el brazo de acción social de <span class=\"text-rotary\">Rotary San Cristóbal</span>. Nacimos para canalizar la generosidad de nuestra comunidad y convertirla en obras tangibles: centros médicos, programas educativos y asistencia alimentaria.",
     "location_label": "Sede Principal:",
-    "location_city": "San Cristóbal, Estado Táchira, Venezuela.",
+    "location_city": "Av. 19 de Abril, Edificio Rotario Dr. Augusto Peña Sosa, Piso 2, San Cristóbal, Estado Táchira, Venezuela.",
     "location_info": "Operando bajo los estándares internacionales de Rotary International.",
     "follow_us_ig": "Síguenos en Instagram",
     "transparency": "Transparencia en donaciones",
@@ -39,8 +39,15 @@
         "instagram": "https://www.instagram.com/jyrodri/"
       },
       {
+        "name": "Felix Daza",
+        "role": "Vicepresidente",
+        "initials": "tes",
+        "image": "/team/tesorefro.jpg",
+        "instagram": "https://instagram.com/perfil"
+      },
+      {
         "name": "Felmar Leonardo Moncada",
-        "role": "Secretario",
+        "role": "Secretario y Presidente del Comité de la Fundación Rotaria",
         "initials": "sec",
         "image": "/team/secretario.jpg",
         "instagram": "https://www.instagram.com/leomoncadasc/"
@@ -53,11 +60,32 @@
         "instagram": "https://instagram.com/perfil"
       },
       {
-        "name": "Felmar Leonardo Moncada",
+        "name": "Zulay Rangel",
+        "role": "Directora de Protocolo",
+        "initials": "tes",
+        "image": "/team/tesorefro.jpg",
+        "instagram": "https://instagram.com/perfil"
+      },
+      {
+        "name": "Luigi",
         "role": "Director de Proyectos",
-        "initials": "pro",
-        "image": "/team/director.jpg",
-        "instagram": "https://www.instagram.com/leomoncadasc/"
+        "initials": "tes",
+        "image": "/team/tesorefro.jpg",
+        "instagram": "https://instagram.com/perfil"
+      },
+      {
+        "name": "Melvin Mendez (Rotaract)",
+        "role": "Director de Imagen Pública",
+        "initials": "tes",
+        "image": "/team/tesorefro.jpg",
+        "instagram": "https://instagram.com/perfil"
+      },
+      {
+        "name": "Ivone Romero",
+        "role": "Director de Servicio Profesional",
+        "initials": "tes",
+        "image": "/team/tesorefro.jpg",
+        "instagram": "https://instagram.com/perfil"
       }
     ]
   },
@@ -87,7 +115,7 @@
     "title": "Tu generosidad en acción",
     "subtitle": "No son solo números, son vidas transformadas en el Táchira durante el último año.",
     "lunches": {
-      "label": "Almuerzos Servidos",
+      "label": "Ayudas Alimentarias",
       "detail": "En comedores comunitarios y ancianatos."
     },
     "patients": {
@@ -95,8 +123,8 @@
       "detail": "Consultas médicas gratuitas y medicamentos esenciales."
     },
     "scholarships": {
-      "label": "Becas escolares",
-      "detail": "Niños que regresaron al aula con útiles y uniformes."
+      "label": "Donaciones escolares",
+      "detail": "Niños que regresaron al aula con libros y útiles."
     },
     "transparency_title": "Transparencia total:",
     "transparency_text": "Todos los fondos son auditados y gestionados bajo los protocolos éticos de Rotary International. Cada dólar cuenta."
