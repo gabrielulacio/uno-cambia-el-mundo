@@ -122,14 +122,6 @@ h1 {
   color: #856404;
   font-size: 0.95rem;
 }
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 32px;
-  font-size: 0.95rem;
-  color: #555;
-  
-  strong { color: var(--rotary-blue); display: block; margin-bottom: 4px; }
-}
 
 .btn-primary {
   display: inline-block;
