@@ -4,7 +4,7 @@
 
     <div v-if="project" class="detail-container">
       
-      <header class="project-header" :style="{ backgroundImage: `url(${getImageUrl(projectConfig.image)})` }">
+      <header class="project-header" :style="{ backgroundImage: `url(${getImageUrl(projectStatus.image)})` }">
         <div class="overlay"></div>
         <div class="header-content">
           <div class="badge">{{ $rt(project.category) }}</div>
@@ -72,22 +72,27 @@ import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import NavigationBar from '@/components/NavigationBar.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import { PROJECTS_CONFIG } from '@/constants/projects';
+import { useDonationStatus } from '@/store/useDonationStatus';
+import { getImageUrl } from '@/utils/images';
 
 const { tm, rt } = useI18n();
 const route = useRoute();
 const slug = computed(() => route.params.slug);
 const project = ref(null);
+const { projects, loadDonationStatus } = useDonationStatus();
 
-const projectConfig = computed(() => PROJECTS_CONFIG[slug.value]);
+// Obtener datos dinámicos del proyecto desde el store
+const projectStatus = computed(() => {
+  return projects.value.find(p => p.id === slug.value) || { current: 0, goal: 5000, image: 'hero-bg.png' };
+});
 
-const getImageUrl = (name) => {
-  if (!name) return '';
-  if (name.startsWith('http') || name.startsWith('/')) return name;
-  return new URL(`../assets/images/${name}`, import.meta.url).href;
-};
+const progressPercentage = computed(() => {
+  if (!projectStatus.value) return 0;
+  return Math.min(Math.round((projectStatus.value.current / projectStatus.value.goal) * 100), 100);
+});
 
 const loadProject = () => {
+  loadDonationStatus();
   const allProjects = tm('projects.list');
   if (allProjects[slug.value]) {
     project.value = allProjects[slug.value];
@@ -99,11 +104,6 @@ const loadProject = () => {
 
 onMounted(loadProject);
 watch(slug, loadProject);
-
-const progressPercentage = computed(() => {
-  if (!projectConfig.value) return 0;
-  return Math.min(Math.round((projectConfig.value.current / projectConfig.value.goal) * 100), 100);
-});
 </script>
 
 <style scoped lang="scss">

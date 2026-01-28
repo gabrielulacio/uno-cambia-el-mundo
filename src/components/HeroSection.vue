@@ -2,6 +2,13 @@
   <section class="hero-section">
     <div class="hero-background">
       <div class="overlay"></div>
+      <!-- Action Ticker moving inside background to avoid layout issues -->
+      <div class="action-ticker">
+        <div class="ticker-content">
+          <span>{{ $t('hero.ticker_text') }}</span>
+          <span>{{ $t('hero.ticker_text') }}</span>
+        </div>
+      </div>
     </div>
 
     <div class="hero-content">
@@ -156,11 +163,51 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Action Ticker Styles */
+.action-ticker {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--rotary-gold);
+  color: var(--rotary-blue);
+  padding: 8px 0; /* Un poco mas pequeño */
+  overflow: hidden;
+  z-index: 5; /* Por encima del overlay pero puede estar bajo el contenido si se solapan */
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem; /* Ajuste tamaño */
+  letter-spacing: 1px;
+}
+
+.ticker-content {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker-animation 30s linear infinite;
+  gap: 0;
+}
+
+.ticker-content span {
+  display: inline-block;
+  padding-right: 20px; /* Space between repeated text */
+}
+
+@keyframes ticker-animation {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero-brand-logo { max-width: 280px; } /* Más pequeño en celular */
   .hero-subtitle { font-size: 1.1rem; }
   .cta-group { flex-direction: column; width: 100%; max-width: 300px; }
   .btn { width: 100%; text-align: center; }
+  
+  .action-ticker {
+    font-size: 0.75rem;
+    padding: 8px 0;
+  }
 }
 </style>

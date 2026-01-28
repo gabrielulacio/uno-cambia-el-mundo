@@ -37,7 +37,7 @@
                 </div>
                 <div class="method-details" v-if="activeMethod === method.id">
                   <div v-for="(detail, index) in method.details" :key="index" class="detail-row">
-                    <span class="label">{{ $t(detail.label) }}</span>
+                    <span class="label">{{ te(detail.label) ? t(detail.label) : detail.label }}</span>
                     <span 
                       class="value" 
                       :class="{ copyable: detail.copyable }"
@@ -131,14 +131,18 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { reportPayment, getPaymentMethods } from '@/services/api';
 import { useNotifications } from '@/store/useNotifications';
+import { useClipboard } from '@/composables/useClipboard';
 import NavigationBar from '@/components/NavigationBar.vue';
 import FooterSection from '@/components/FooterSection.vue';
 
 const route = useRoute();
 const router = useRouter();
+const { t, te } = useI18n();
 const { showToast } = useNotifications();
+const { copy } = useClipboard();
 
 const activeMethod = ref('zelle'); 
 const loading = ref(false);
@@ -196,11 +200,7 @@ onMounted(async () => {
 
 
 // Función simple de copiar
-const copy = (text) => {
-  navigator.clipboard.writeText(text);
-  showToast('Copiado: ' + text, 'info');
-};
-
+// Usamos el composable useClipboard importado arriba
 const submitReport = async () => {
   loading.value = true;
   

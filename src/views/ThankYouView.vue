@@ -12,6 +12,10 @@
         
         <p class="message" v-html="$t('thank_you.message')"></p>
 
+        <div v-if="hasEmailWarning" class="warning-box">
+          <p><strong>⚠️ Nota Importante:</strong> Tu reporte fue registrado en nuestra base de datos, pero el sistema de notificaciones por correo está temporalmente inactivo. No te preocupes, nuestro equipo revisará tu aporte manualmente.</p>
+        </div>
+
         <div class="info-box">
           <p><strong>{{ $t('thank_you.next_steps_title') }}</strong></p>
           <p>{{ $t('thank_you.next_steps_text') }}</p>
@@ -30,8 +34,12 @@
 <script setup>
 import NavigationBar from '@/components/NavigationBar.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import confetti from 'canvas-confetti'; // Efecto opcional de confeti
+
+const route = useRoute();
+const hasEmailWarning = computed(() => route.query.email_warning === 'true');
 
 onMounted(() => {
   // Disparar confeti al cargar (requiere: npm install canvas-confetti)
@@ -98,6 +106,22 @@ h1 {
 .info-box {
   background: #f9fcff;
   border: 1px solid #eef2f7;
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.warning-box {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  text-align: left;
+  color: #856404;
+  font-size: 0.95rem;
+}
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 32px;

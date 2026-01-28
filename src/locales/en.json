@@ -1,4 +1,7 @@
 {
+  "Email": "Email",
+  "Name": "Name",
+  "Holder": "Account Holder",
   "nav": {
     "start": "Home",
     "projects": "Projects",
@@ -10,8 +13,10 @@
     "rotary_initiative": "An initiative by",
     "rotary_name": "Rotary San Cristobal (District 4380)",
     "subtitle": "Feed, Educate, and Heal.<br>Join the movement transforming realities in <b>Venezuela</b>.",
+    "ticker_text": "✨ Every small action counts • From one dollar you can change the world • Join the change today! • ✨ Every small action counts • From one dollar you can change the world • Join the change today! • ✨",
     "cta_donate": "Make a Donation 💙",
-    "cta_projects": "View Projects"
+    "cta_projects": "View Projects",
+    "global_progress": "Global Progress"
   },
   "featured_projects": {
     "title": "Featured Projects",
@@ -23,7 +28,7 @@
     "title": "More than a campaign, a commitment to Tachira.",
     "description": "<strong>\"One Changes the World\"</strong> is the social action arm of <span class=\"text-rotary\">Rotary San Cristobal</span>. We were born to channel the generosity of our community and turn it into tangible works: medical centers, educational programs, and food assistance.",
     "location_label": "Main Headquarters:",
-    "location_city": "San Cristobal, Tachira State, Venezuela.",
+    "location_city": "Av. 19 de Abril, Edificio Rotario Dr. Augusto Peña Sosa, Floor 2, San Cristobal, Tachira State, Venezuela.",
     "location_info": "Operating under the international standards of Rotary International.",
     "follow_us_ig": "Follow us on Instagram",
     "transparency": "Transparency in donations",
@@ -39,8 +44,15 @@
         "instagram": "https://www.instagram.com/jyrodri/"
       },
       {
+        "name": "Felix Daza",
+        "role": "Vice President",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
+      },
+      {
         "name": "Felmar Leonardo Moncada",
-        "role": "Secretary and Project Director",
+        "role": "Secretary and Rotary Foundation Committee Chair",
         "initials": "sec",
         "image": "/team/secretario.jpg",
         "instagram": "https://www.instagram.com/leomoncadasc/"
@@ -50,7 +62,35 @@
         "role": "Treasurer",
         "initials": "tes",
         "image": "/team/tesorero.jpg",
-        "instagram": "https://instagram.com/perfil"
+        "instagram": ""
+      },
+      {
+        "name": "Zulay Rangel",
+        "role": "Protocol Director",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
+      },
+      {
+        "name": "Luigi",
+        "role": "Project Director",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
+      },
+      {
+        "name": "Melvin Mendez",
+        "role": "Public Image Director",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
+      },
+      {
+        "name": "Ivone Romero",
+        "role": "Professional Service Director",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
       }
     ]
   },
@@ -80,7 +120,7 @@
     "title": "Your generosity in action",
     "subtitle": "They are not just numbers, they are lives transformed in Tachira during the last year.",
     "lunches": {
-      "label": "Lunches Served",
+      "label": "Food Assistance",
       "detail": "In community kitchens and nursing homes."
     },
     "patients": {
@@ -88,8 +128,8 @@
       "detail": "Free medical consultations and essential medicines."
     },
     "scholarships": {
-      "label": "School scholarships",
-      "detail": "Children who returned to the classroom with supplies and uniforms."
+      "label": "School donations",
+      "detail": "Children who returned to the classroom with books and supplies."
     },
     "transparency_title": "Total transparency:",
     "transparency_text": "All funds are audited and managed under the ethical protocols of Rotary International. Every dollar counts."
@@ -202,12 +242,13 @@
     },
     "ui": {
       "card_raised": "Raised",
+      "card_of": "of",
       "card_goal": "Goal",
       "card_view_details": "View Details"
     }
   },
   "project_detail": {
-    "raised": "Raised",
+    "raised": "Completed",
     "goal": "Goal",
     "about_title": "About this initiative",
     "cta_title": "Be part of the change!",

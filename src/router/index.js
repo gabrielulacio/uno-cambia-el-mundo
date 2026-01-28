@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_to, _from, _savedPosition) {
     // Esto hace que al cambiar de página, el scroll suba arriba de todo (muy profesional)
     return { top: 0 };
   },

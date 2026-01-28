@@ -13,15 +13,15 @@
       <div class="projects-grid">
         
         <ProjectCard 
-          v-for="(proj, slug) in $tm('projects.list')"
-          :key="slug"
-          :title="$rt(proj.title)"
-          :description="$rt(proj.description)"
-          :category="$rt(proj.category)"
-          :image="PROJECTS_CONFIG[slug]?.image"
-          :current="PROJECTS_CONFIG[slug]?.current"
-          :goal="PROJECTS_CONFIG[slug]?.goal"
-          :link="`/proyectos/${slug}`"
+          v-for="proj in projectList"
+          :key="proj.slug"
+          :title="proj.title"
+          :description="proj.description"
+          :category="proj.category"
+          :image="proj.image"
+          :current="proj.current"
+          :goal="proj.goal"
+          :link="`/proyectos/${proj.slug}`"
         />
 
         <div class="coming-soon-card">
@@ -38,10 +38,35 @@
 </template>
 
 <script setup>
+import { onMounted, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import NavigationBar from '@/components/NavigationBar.vue';
 import ProjectCard from '@/components/ProjectCard.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import { PROJECTS_CONFIG } from '@/constants/projects';
+import { useDonationStatus } from '@/store/useDonationStatus';
+
+const { tm, rt } = useI18n();
+const { projects, loadDonationStatus } = useDonationStatus();
+
+onMounted(() => {
+  loadDonationStatus();
+});
+
+const projectList = computed(() => {
+  const all = tm('projects.list');
+  return Object.entries(all).map(([slug, content]) => {
+    const status = projects.value.find(p => p.id === slug);
+    return {
+      slug,
+      title: rt(content.title),
+      description: rt(content.description),
+      category: rt(content.category),
+      image: status?.image || 'hero-bg.png',
+      goal: status?.goal || 5000,
+      current: status?.current || 0
+    };
+  });
+});
 </script>
 
 <style scoped lang="scss">

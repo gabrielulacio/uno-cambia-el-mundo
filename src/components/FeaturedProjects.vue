@@ -13,10 +13,10 @@
           :title="project.title"
           :description="project.description"
           :category="project.category"
-          :image="PROJECTS_CONFIG[project.slug]?.image || 'hero-bg.png'"
+          :image="project.image"
           :link="`/proyectos/${project.slug}`"
-          :goal="PROJECTS_CONFIG[project.slug]?.goal || 5000"
-          :current="PROJECTS_CONFIG[project.slug]?.current || 1200"
+          :goal="project.goal"
+          :current="project.current"
         />
       </div>
 
@@ -30,17 +30,30 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ProjectCard from './ProjectCard.vue';
-import { PROJECTS_CONFIG } from '@/constants/projects';
+import { useDonationStatus } from '@/store/useDonationStatus';
 
 const { tm } = useI18n();
+const { projects, loadDonationStatus } = useDonationStatus();
+
+onMounted(() => {
+  loadDonationStatus();
+});
 
 const featuredProjects = computed(() => {
   const allProjects = tm('projects.list');
-  // Return first 3 projects
-  return Object.values(allProjects).slice(0, 3);
+  return Object.entries(allProjects).slice(0, 3).map(([slug, content]) => {
+    const status = projects.value.find(p => p.id === slug);
+    return {
+      slug,
+      ...content,
+      image: status?.image || 'hero-bg.png',
+      goal: status?.goal || 5000,
+      current: status?.current || 0
+    };
+  });
 });
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="project-card">
     <div class="card-image-wrapper">
-      <img :src="getImageUrl(image)" :alt="title" class="card-image" />
+      <img :src="getImageUrl(image)" :alt="title" class="card-image" loading="lazy" />
       <div class="category-badge">{{ category }}</div>
     </div>
 
@@ -27,6 +27,7 @@
 
 <script setup>
 import { computed } from 'vue';
+import { getImageUrl } from '@/utils/images';
 
 const props = defineProps({
   title: String,
@@ -37,13 +38,6 @@ const props = defineProps({
   goal: Number,
   link: String
 });
-
-const getImageUrl = (name) => {
-  if (!name) return '';
-  // Si ya es una URL completa o path absoluto de public, retornarlo
-  if (name.startsWith('http') || name.startsWith('/')) return name;
-  return new URL(`../assets/images/${name}`, import.meta.url).href;
-};
 
 const progressPercentage = computed(() => {
   if (!props.goal) return 0;

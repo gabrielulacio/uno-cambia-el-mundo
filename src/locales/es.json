@@ -1,4 +1,7 @@
 {
+  "Email": "Correo",
+  "Name": "Nombre",
+  "Holder": "Titular",
   "nav": {
     "start": "Inicio",
     "projects": "Proyectos",
@@ -8,20 +11,22 @@
   },
   "hero": {
     "rotary_initiative": "Una iniciativa de",
-    "rotary_name": "Rotary San Cristóbal (Dtto 4380)",
+    "rotary_name": "Rotary San Cristóbal (Distrito 4380)",
     "subtitle": "Alimentar, Educar y Sanar.<br>Únete al movimiento que transforma realidades en <b>Venezuela</b>.",
-    "cta_donate": "Hacer una Donación 💙",
-    "cta_projects": "Ver Proyectos"
+    "ticker_text": "✨ Cada pequeña acción cuenta • Desde un dólar puedes cambiar el mundo • ¡Únete al cambio hoy! • ✨ Cada pequeña acción cuenta • Desde un dólar puedes cambiar el mundo • ¡Únete al cambio hoy! • ✨",
+    "cta_donate": "Realiza una donación 💙",
+    "cta_projects": "Ver Proyectos",
+    "global_progress": "Recaudación Global"
   },
   "featured_projects": {
     "title": "Proyectos Destacados",
-    "subtitle": "Conoce las iniciativas que están transformando realidades hoy.",
+    "subtitle": "Conoce las iniciativas que están transformando realidades hoy",
     "view_all": "Ver todos los proyectos"
   },
   "brand": {
     "eyebrow": "Nuestra Identidad",
     "title": "Más que una campaña, un compromiso con el Táchira.",
-    "description": "<strong>\"Uno Cambia el Mundo\"</strong> es el brazo de acción social de <span class=\"text-rotary\">Rotary San Cristóbal</span>. Nacimos para canalizar la generosidad de nuestra comunidad y convertirla en obras tangibles: centros médicos, programas educativos y asistencia alimentaria.",
+    "description": "<strong>\"Uno Cambia el Mundo\"</strong> es el brazo de acción social de <span class=\"text-rotary\">Rotary San Cristóbal</span>. Nacimos para canalizar la generosidad de nuestra comunidad y convertirla en obras tangibles: jornadas médicas, programas educativos y asistencia alimentaria.",
     "location_label": "Sede Principal:",
     "location_city": "Av. 19 de Abril, Edificio Rotario Dr. Augusto Peña Sosa, Piso 2, San Cristóbal, Estado Táchira, Venezuela.",
     "location_info": "Operando bajo los estándares internacionales de Rotary International.",
@@ -36,14 +41,14 @@
         "role": "Presidente",
         "initials": "pres",
         "image": "/team/presidente.jpg",
-        "instagram": "https://www.instagram.com/jyrodri/"
+        "instagram": ""
       },
       {
         "name": "Felix Daza",
         "role": "Vicepresidente",
-        "initials": "tes",
-        "image": "/team/tesorefro.jpg",
-        "instagram": "https://instagram.com/perfil"
+        "initials": "VP",
+        "image": "",
+        "instagram": ""
       },
       {
         "name": "Felmar Leonardo Moncada",
@@ -54,38 +59,38 @@
       },
       {
         "name": "Maria del Mar Carrero",
-        "role": "Tesorero",
+        "role": "Tesorera",
         "initials": "tes",
         "image": "/team/tesorero.jpg",
-        "instagram": "https://instagram.com/perfil"
+        "instagram": ""
       },
       {
         "name": "Zulay Rangel",
         "role": "Directora de Protocolo",
-        "initials": "tes",
-        "image": "/team/tesorefro.jpg",
-        "instagram": "https://instagram.com/perfil"
+        "initials": "pro",
+        "image": "",
+        "instagram": ""
       },
       {
         "name": "Luigi",
         "role": "Director de Proyectos",
-        "initials": "tes",
-        "image": "/team/tesorefro.jpg",
-        "instagram": "https://instagram.com/perfil"
+        "initials": "dpr",
+        "image": "",
+        "instagram": ""
       },
       {
-        "name": "Melvin Mendez (Rotaract)",
+        "name": "Melvin Mendez",
         "role": "Director de Imagen Pública",
-        "initials": "tes",
-        "image": "/team/tesorefro.jpg",
-        "instagram": "https://instagram.com/perfil"
+        "initials": "ip",
+        "image": "",
+        "instagram": ""
       },
       {
         "name": "Ivone Romero",
         "role": "Director de Servicio Profesional",
-        "initials": "tes",
-        "image": "/team/tesorefro.jpg",
-        "instagram": "https://instagram.com/perfil"
+        "initials": "dsp",
+        "image": "",
+        "instagram": ""
       }
     ]
   },
@@ -188,7 +193,8 @@
       "reference_placeholder": "Últimos 4-6 dígitos",
       "anonymous_label": "Prefiero donar anónimamente (mi nombre no saldrá público)",
       "submit_btn": "Confirmar Donación ✅",
-      "loading": "Enviando..."
+      "loading": "Enviando...",
+      "other_currency_label": "Especifique"
     }
   },
   "about": {
@@ -237,6 +243,7 @@
     },
     "ui": {
       "card_raised": "Completado",
+      "card_of": "de",
       "card_goal": "Objetivo",
       "card_view_details": "Ver Detalles"
     }
