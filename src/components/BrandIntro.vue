@@ -47,12 +47,15 @@
         <p class="team-subtitle">{{ $t('brand.team_subtitle') }}</p>
         
         <div class="team-grid">
-          <a v-for="(member, index) in $tm('brand.team_members')" 
+          <component 
+             :is="member.instagram ? 'a' : 'div'"
+             v-for="(member, index) in $tm('brand.team_members')" 
              :key="index" 
-             :href="member.instagram" 
-             target="_blank" 
-             rel="noopener noreferrer"
-             class="team-card">
+             :href="member.instagram ? member.instagram : null" 
+             :target="member.instagram ? '_blank' : null" 
+             :rel="member.instagram ? 'noopener noreferrer' : null"
+             class="team-card"
+             :class="{ 'is-link': member.instagram }">
             <div class="avatar-container">
               <img 
                 v-if="member.image" 
@@ -67,7 +70,7 @@
               <h4>{{ member.name }}</h4>
               <span class="role">{{ member.role }}</span>
             </div>
-          </a>
+          </component>
         </div>
       </div>
 
@@ -276,11 +279,17 @@ import InstagramIcon from '@/components/icons/InstagramIcon.vue'
   gap: 16px;
   transition: all 0.3s ease;
   text-decoration: none;
+  color: inherit;
+  cursor: default;
 
-  &:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    border-color: var(--rotary-gold);
-    transform: translateY(-5px);
+  &.is-link {
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      border-color: var(--rotary-gold);
+      transform: translateY(-5px);
+    }
   }
 }
 

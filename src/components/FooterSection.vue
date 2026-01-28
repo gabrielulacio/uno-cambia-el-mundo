@@ -19,7 +19,7 @@
       <div class="footer-col contact-col">
         <h4>{{ $t('footer.contact') }}</h4>
         <p>San Cristóbal, Táchira.</p>
-        <a href="mailto:info@rotarysc.org" class="contact-link">info@rotarysc.org</a>
+        <a href="mailto:rotarysc@gmail.com" class="contact-link">rotarysc@gmail.com</a>
         <div class="footer-social">
           <a href="https://www.instagram.com/rotary_sc/" target="_blank" class="social-link" :aria-label="$t('nav.instagram_aria')">
             <InstagramIcon :size="18" />
