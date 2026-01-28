@@ -1,0 +1,269 @@
+{
+  "Email": "Email",
+  "Name": "Name",
+  "Holder": "Account Holder",
+  "nav": {
+    "start": "Home",
+    "projects": "Projects",
+    "donate": "Donate 💛",
+    "home_aria": "Go to home",
+    "instagram_aria": "Follow us on Instagram"
+  },
+  "hero": {
+    "rotary_initiative": "An initiative by",
+    "rotary_name": "Rotary San Cristobal (District 4380)",
+    "subtitle": "Feed, Educate, and Heal.<br>Join the movement transforming realities in <b>Venezuela</b>.",
+    "ticker_text": "✨ Every small action counts • From one dollar you can change the world • Join the change today! • ✨ Every small action counts • From one dollar you can change the world • Join the change today! • ✨",
+    "cta_donate": "Make a Donation 💙",
+    "cta_projects": "View Projects",
+    "global_progress": "Global Progress"
+  },
+  "featured_projects": {
+    "title": "Featured Projects",
+    "subtitle": "Discover the initiatives transforming realities today.",
+    "view_all": "View all projects"
+  },
+  "brand": {
+    "eyebrow": "Our Identity",
+    "title": "More than a campaign, a commitment to Tachira.",
+    "description": "<strong>\"One Changes the World\"</strong> is the social action arm of <span class=\"text-rotary\">Rotary San Cristobal</span>. We were born to channel the generosity of our community and turn it into tangible works: medical centers, educational programs, and food assistance.",
+    "location_label": "Main Headquarters:",
+    "location_city": "Av. 19 de Abril, Edificio Rotario Dr. Augusto Peña Sosa, Floor 2, San Cristobal, Tachira State, Venezuela.",
+    "location_info": "Operating under the international standards of Rotary International.",
+    "follow_us_ig": "Follow us on Instagram",
+    "transparency": "Transparency in donations",
+    "years_service": "Years serving the community",
+    "team_title": "Our Board of Directors",
+    "team_subtitle": "Leadership committed to ethics and service.",
+    "team_members": [
+      {
+        "name": "Jose Yovanny Rodriguez",
+        "role": "President",
+        "initials": "pres",
+        "image": "/team/presidente.jpg",
+        "instagram": "https://www.instagram.com/jyrodri/"
+      },
+      {
+        "name": "Felix Daza",
+        "role": "Vice President",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
+      },
+      {
+        "name": "Felmar Leonardo Moncada",
+        "role": "Secretary and Rotary Foundation Committee Chair",
+        "initials": "sec",
+        "image": "/team/secretario.jpg",
+        "instagram": "https://www.instagram.com/leomoncadasc/"
+      },
+      {
+        "name": "Maria del Mar Carrero",
+        "role": "Treasurer",
+        "initials": "tes",
+        "image": "/team/tesorero.jpg",
+        "instagram": ""
+      },
+      {
+        "name": "Zulay Rangel",
+        "role": "Protocol Director",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
+      },
+      {
+        "name": "Luigi",
+        "role": "Project Director",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
+      },
+      {
+        "name": "Melvin Mendez",
+        "role": "Public Image Director",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
+      },
+      {
+        "name": "Ivone Romero",
+        "role": "Professional Service Director",
+        "initials": "tes",
+        "image": "",
+        "instagram": ""
+      }
+    ]
+  },
+  "cta": {
+    "line1": "Health cannot wait.",
+    "line2": "Join this campaign and help us achieve it.",
+    "button": "Donate now 💙"
+  },
+  "features": {
+    "cards": [
+      {
+        "title": "More dignified medical care",
+        "description": "Each patient will receive the care they deserve. No waiting or limitations."
+      },
+      {
+        "title": "Saving more lives",
+        "description": "New equipment can be the difference between life and loss."
+      },
+      {
+        "title": "Your donation leaves a mark",
+        "description": "Every contribution builds a healthier future for our community."
+      }
+    ]
+  },
+  "impact": {
+    "eyebrow": "Tangible Results",
+    "title": "Your generosity in action",
+    "subtitle": "They are not just numbers, they are lives transformed in Tachira during the last year.",
+    "lunches": {
+      "label": "Food Assistance",
+      "detail": "In community kitchens and nursing homes."
+    },
+    "patients": {
+      "label": "Patients treated",
+      "detail": "Free medical consultations and essential medicines."
+    },
+    "scholarships": {
+      "label": "School donations",
+      "detail": "Children who returned to the classroom with books and supplies."
+    },
+    "transparency_title": "Total transparency:",
+    "transparency_text": "All funds are audited and managed under the ethical protocols of Rotary International. Every dollar counts."
+  },
+  "map": {
+    "alt": "Photo of the medical center"
+  },
+  "objectives": {
+    "title": "Our Goal",
+    "progress_description": "Every contribution, large or small, is a step towards a better medical center."
+  },
+  "info_card": {
+    "text": "We serve <strong>27,000 people</strong> a year, but our equipment no longer responds as it should. With <strong>your help</strong>, we can change them and <strong>make the difference</strong> between hope and uncertainty."
+  },
+  "footer": {
+    "desc": "An initiative of <strong>Rotary San Cristobal</strong> to transform realities through united action.",
+    "explore": "Explore",
+    "how_to_donate": "How to Donate",
+    "contact": "Contact",
+    "dev_credits": "Developed with ❤️ and ingenuity by <strong>Rotaract Dr. Pablo Puky</strong>",
+    "devs": [
+      {
+        "name": "Gabriel Ulacio",
+        "url": "https://www.linkedin.com/in/gabriel-ulacio-28b5a3298/"
+      },
+      {
+        "name": "Gustavo Morillo",
+        "url": "https://www.linkedin.com/in/gustavo-morillo-vetancourt/"
+      },
+      {
+        "name": "Juan Paredes",
+        "url": "https://www.linkedin.com/in/juan-diego-paredes-g%C3%A1mez-21415338a/"
+      }
+    ],
+    "all_rights": "All rights reserved."
+  },
+  "donations": {
+    "title": "Make your contribution 💙",
+    "subtitle": "Your help goes directly to those who need it. Follow these steps:",
+    "step1_title": "Choose your payment method",
+    "step1_desc": "Transfer the amount you wish.",
+    "step2_title": "Report your donation",
+    "step2_desc": "Vital for transparency! Fill this out upon payment.",
+    "methods": {
+      "email": "Email:",
+      "holder": "Account Holder:",
+      "bank": "Bank:",
+      "phone": "Phone:",
+      "rif": "RIF:",
+      "pay_id": "Pay ID:"
+    },
+    "form": {
+      "project_label": "Which cause are you donating to?",
+      "project_placeholder": "Select a project",
+      "project_general": "General Fund (Where it's needed most)",
+      "name_label": "Your Name",
+      "email_label": "Your Email",
+      "amount_label": "Amount",
+      "currency_label": "Currency",
+      "reference_label": "Reference / Receipt No.",
+      "reference_placeholder": "Last 4-6 digits",
+      "anonymous_label": "I prefer to donate anonymously (my name will not be public)",
+      "submit_btn": "Confirm Donation ✅",
+      "loading": "Sending..."
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Learn more about who we are and how this campaign will transform lives.",
+    "faq_title": "Frequently Asked Questions",
+    "faqs": [
+      {
+        "q": "Who is Rotary San Cristobal?",
+        "a": "Rotary San Cristobal is a local Rotary club committed to service and community development. We work on health, education, and welfare projects, coordinating efforts with public and private institutions to generate a positive and sustainable impact."
+      },
+      {
+        "q": "What is the Dr. Pablo Puky Rotary Medical Center Foundation?",
+        "a": "The Dr. Pablo Puky Rotary Medical Center Foundation is a non-profit organization dedicated to providing quality medical care and prevention programs to the people and families who need it most. This campaign seeks to strengthen its equipment and infrastructure to improve care."
+      },
+      {
+        "q": "How will the funds raised be used?",
+        "a": "Funds will be used for the acquisition and renovation of priority medical equipment and improvements in the center's care capacity. We will publish progress and results to ensure transparency at every stage."
+      },
+      {
+        "q": "How can I donate?",
+        "a": "You can make your contribution from the Donate page, choosing the amount you prefer. Every contribution, large or small, brings us closer to the goal and has a direct impact on community medical care."
+      }
+    ]
+  },
+  "projects": {
+    "title": "Our Projects",
+    "subtitle": "Transparency and direct action. Choose a cause and be part of the change.",
+    "coming_soon": "Coming Soon",
+    "coming_soon_desc": "We are evaluating new educational initiatives.",
+    "list": {
+      "centro-medico": {
+        "slug": "centro-medico",
+        "title": "Dr. Pablo Puky Rotary Medical Center Foundation",
+        "description": "For more than 30 years, we have been the health refuge for 27,000 Tachira residents a year. Today, we need your help to renew our equipment and unlock an international grant that will multiply your impact.",
+        "category": "Health",
+        "long_description": "<p>Imagine the distress of a mother who needs an urgent ultrasound for her baby, or a grandfather who requires an immediate heart check-up but lacks the resources for a private clinic. For <strong>more than 30 years</strong>, the Dr. Pablo Puky Medical Center has been the answer for them.</p><p>We have served more than <strong>27,000 people each year</strong>, becoming a pillar of health for the most vulnerable communities in San Cristobal and all over Tachira. But today, our heroes in white coats need better tools to keep fighting.</p><p><strong>The Challenge:</strong> Our equipment has given all it had. To guarantee accurate diagnoses and save lives, we need an urgent <strong>Comprehensive Renovation</strong>.</p><h3>What will we achieve with your contribution?</h3><p>Your donation will go directly to the acquisition of state-of-the-art technology:</p><ul><li><strong>Maternal Health:</strong> A new high-resolution <em>Aplio Flex Ultrasound</em> to care for mothers and their babies from the first heartbeat.</li><li><strong>Fight against Cancer:</strong> Digitalization of X-rays and a modern Mammogram for early detection of breast cancer.</li><li><strong>Heart Care:</strong> Digital Holters and electrocardiographs to prevent heart attacks and arrhythmias in time.</li><li><strong>Accurate Diagnoses:</strong> Complete modernization of the clinical laboratory.</li></ul><h3>Your money is worth x10: The Magic of Rotary</h3><p>This is where your generosity makes history. We are applying for a <strong>Global Grant from Rotary International</strong>. We need to raise an initial local goal (10% of the total project) to unlock international funds from the World and District Fund.</p><p>This means that <strong>every dollar you donate today is multiplied</strong> to bring equipment valued at more than $80,000 to Tachira. You are not just donating money; you are investing in the health of more than 100,000 people and ensuring the center's service for the next 15 years.</p><p>Help us reach the goal. Help us keep saying: <strong>\"We are here for you\"</strong>.</p>"
+      },
+      "gym-rehabilitacion": {
+        "slug": "gym-rehabilitacion",
+        "title": "Active Rehabilitation Center \"Life in Motion\"",
+        "description": "Old age should not be synonymous with loneliness or dependence. We are creating the first clinical space in Tachira scientifically designed to restore strength, balance, and joy to our seniors.",
+        "category": "Seniors",
+        "long_description": "<p>Aging brings two silent enemies: <strong>loss of strength (sarcopenia) and loneliness</strong>. Many of our seniors suffer preventable falls that end in hip fractures, marking the end of their independence.</p><p><strong>We want to break that cycle.</strong> At the Dr. Pablo Puky Medical Center, we are creating the <em>\"Life in Motion\"</em> program. Forget the idea of a noisy gym; this is a <strong>Clinical Sanctuary</strong> supervised by experts.</p><h3>A Comprehensive 100m² Space</h3><p>Your contribution will equip <strong>5 Specialized Therapeutic Zones</strong>:</p><ul><li><strong>Zone 1 - Mobility:</strong> To reduce stiffness and prepare the body.</li><li><strong>Zone 2 - Strength:</strong> Combats muscle loss so they regain autonomy.</li><li><strong>Zone 3 - Balance and Gait:</strong> Vital technology to prevent falls and fractures.</li><li><strong>Zone 4 - Coordination:</strong> Exercises to reconnect the mind with movement.</li><li><strong>Zone 5 - Psychosocial:</strong> Therapy tables to combat isolation and create friendship.</li></ul><p><strong>The Impact:</strong> We have the space and the expert human team, but we lack specialized equipment (bars, non-slip floors, walking implements). Your donation turns an empty space into a pioneering center in Tachira.</p><p>Help us demonstrate that aging can be done with dignity. <strong>Help us put movement into their years.</strong></p>"
+      }
+    },
+    "ui": {
+      "card_raised": "Raised",
+      "card_of": "of",
+      "card_goal": "Goal",
+      "card_view_details": "View Details"
+    }
+  },
+  "project_detail": {
+    "raised": "Completed",
+    "goal": "Goal",
+    "about_title": "About this initiative",
+    "cta_title": "Be part of the change!",
+    "cta_desc": "Your contribution goes directly to the purchase of supplies and equipment for this project.",
+    "impact_transparency": "100% Transparency",
+    "impact_report": "Direct report to Rotary",
+    "donate_btn": "Donate to this cause 💙",
+    "not_found": "Project not found",
+    "back_to_catalog": "Back to catalog"
+  },
+  "thank_you": {
+    "title": "Thank you for your generosity!",
+    "message": "We have successfully received your donation report.<br>Our team will verify the transaction and send an official receipt to your email soon.",
+    "next_steps_title": "What follows now?",
+    "next_steps_text": "Your contribution will turn into real actions (supplies, medicine, food). We will keep you informed of the impact you have achieved.",
+    "back_home": "Back to Home"
+  }
+}

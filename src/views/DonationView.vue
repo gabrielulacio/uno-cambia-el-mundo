@@ -2,216 +2,406 @@
   <div class="donation-page">
     <NavigationBar />
 
-    <main class="donation-content">
-      <div class="container">
-        <div v-if="loading" class="loading-message">
-          Cargando datos...
-        </div>
+    <div class="header-spacer"></div>
 
-        <div v-if="error" class="error-message">
-          <p>Error al cargar los datos. Por favor, intenta de nuevo más tarde.</p>
-          <p>Detalle: {{ error }}</p>
-        </div>
+    <main class="container py-5">
+      <div class="donation-layout">
+        
+        <section class="payment-methods-col">
+          <h1 class="page-title">{{ $t('donations.title') }}</h1>
+          <p class="subtitle">
+            {{ $t('donations.subtitle') }}
+          </p>
 
-        <section v-if="!loading && !error" class="progress-section">
-          <h1>Nuestra Meta</h1>
-          <p>Tu donación nos acerca a nuestro objetivo.</p>
-          <DonationProgressBar :goal="goal" :current="current" />
-        </section>
+          <div class="steps">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3>{{ $t('donations.step1_title') }}</h3>
+                <p>{{ $t('donations.step1_desc') }}</p>
+              </div>
+            </div>
 
-        <section v-if="!loading && !error" class="methods-section">
-          <h2 class="methods-title">Métodos de pago</h2>
-          <div class="methods-grid">
-            <button v-for="m in paymentMethods" :key="m.id" class="method-card" @click="openMethod(m)">
-              <img v-if="m.logo" :src="m.logo" :alt="m.name" class="method-logo" />
-              <span class="method-name">{{ m.name }}</span>
-            </button>
+            <div class="methods-accordion">
+              <div 
+                v-for="method in paymentMethods" 
+                :key="method.id"
+                class="method-card" 
+                :class="{ active: activeMethod === method.id }" 
+                @click="activeMethod = method.id"
+              >
+                <div class="method-header">
+                  <span class="method-icon">{{ method.icon }}</span>
+                  <span class="method-name">{{ method.name }}</span>
+                  <span class="arrow-icon">▼</span>
+                </div>
+                <div class="method-details" v-if="activeMethod === method.id">
+                  <div v-for="(detail, index) in method.details" :key="index" class="detail-row">
+                    <span class="label">{{ te(detail.label) ? t(detail.label) : detail.label }}</span>
+                    <span 
+                      class="value" 
+                      :class="{ copyable: detail.copyable }"
+                      @click="detail.copyable ? copy(detail.value) : null"
+                    >
+                      {{ detail.value }} {{ detail.copyable ? '📋' : '' }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
+
+        <section class="report-form-col">
+          <div class="form-card">
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3>{{ $t('donations.step2_title') }}</h3>
+                <p>{{ $t('donations.step2_desc') }}</p>
+              </div>
+            </div>
+
+            <form @submit.prevent="submitReport" class="donation-form">
+              <div class="form-group">
+                <label>{{ $t('donations.form.project_label') }}</label>
+                <select v-model="form.project" required>
+                  <option value="" disabled>{{ $t('donations.form.project_placeholder') }}</option>
+                  <option value="fondo-general">{{ $t('donations.form.project_general') }}</option>
+                  <option v-for="(proj, slug) in $tm('projects.list')" :key="slug" :value="slug">
+                    {{ $rt(proj.title) }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>{{ $t('donations.form.name_label') }}</label>
+                  <input type="text" v-model="form.name" required />
+                </div>
+                <div class="form-group">
+                  <label>{{ $t('donations.form.email_label') }}</label>
+                  <input type="email" v-model="form.email" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>{{ $t('donations.form.amount_label') }}</label>
+                  <input type="number" step="0.01" v-model="form.amount" required />
+                </div>
+                <div class="form-group">
+                  <label>{{ $t('donations.form.currency_label') }}</label>
+                  <select v-model="form.currency" required>
+                    <option value="USD">USD ($)</option>
+                    <option value="VES">Bolívares (Bs.)</option>
+                    <option value="USDT">USDT</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>{{ $t('donations.form.reference_label') }}</label>
+                <input type="text" v-model="form.reference" :placeholder="$t('donations.form.reference_placeholder')" required />
+              </div>
+
+              <div class="form-group checkbox-group">
+                <label>
+                  <input type="checkbox" v-model="form.anonymous" />
+                  {{ $t('donations.form.anonymous_label') }}
+                </label>
+              </div>
+
+                            <button type="submit" class="btn-submit" :disabled="loading">
+                <span v-if="!loading">{{ $t('donations.form.submit_btn') }}</span>
+                <span v-else>{{ $t('donations.form.loading') }}</span>
+              </button>
+            </form>
+          </div>
+        </section>
+
       </div>
     </main>
-
+    
     <FooterSection />
-
-    <!-- Modal de detalles del método -->
-    <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
-      <div class="modal-content">
-        <header class="modal-header">
-          <h3>{{ selectedMethod?.name }}</h3>
-          <button class="modal-close" @click="closeModal" aria-label="Cerrar">✕</button>
-        </header>
-        <div class="modal-body">
-          <p v-if="selectedMethod?.description" class="modal-description">{{ selectedMethod.description }}</p>
-          <ul class="fields-list" v-if="selectedMethod?.fields?.length">
-            <li v-for="(f, idx) in selectedMethod.fields" :key="idx" class="field-row">
-              <span class="field-label">{{ f.label }}</span>
-              <span class="field-value">{{ f.valueMasked || '********' }}</span>
-              <button v-if="f.copyValue" class="copy-btn" @click="copyToClipboard(f.copyValue)">Copiar</button>
-            </li>
-          </ul>
-          <p v-else>No hay datos disponibles para este método.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { reportPayment, getPaymentMethods } from '@/services/api';
+import { useNotifications } from '@/store/useNotifications';
+import { useClipboard } from '@/composables/useClipboard';
 import NavigationBar from '@/components/NavigationBar.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import DonationProgressBar from '@/components/DonationProgressBar.vue';
-import { getPaymentMethods } from '@/services/api.js';
-import { useDonationStatus } from '@/store/useDonationStatus.js';
 
-const { goal, current, loading: loadingDonation, error: errorDonation, loadDonationStatus } = useDonationStatus();
+const route = useRoute();
+const router = useRouter();
+const { t, te } = useI18n();
+const { showToast } = useNotifications();
+const { copy } = useClipboard();
+
+const activeMethod = ref('zelle'); 
+const loading = ref(false);
 const paymentMethods = ref([]);
-const loading = ref(true);
-const error = ref(null);
 
-const showModal = ref(false);
-const selectedMethod = ref(null);
+const form = ref({
+  project: '',
+  name: '',
+  email: '',
+  amount: '',
+  currency: 'USD',
+  reference: '',
+  anonymous: false
+});
 
-function openMethod(method) {
-  selectedMethod.value = method;
-  showModal.value = true;
-}
-
-function closeModal() {
-  showModal.value = false;
-  selectedMethod.value = null;
-}
-
-async function copyToClipboard(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    // Opcional: mostrar feedback al usuario
-  } catch (e) {
-    console.error('No se pudo copiar al portapapeles', e);
-  }
-}
-
+// Al cargar, revisar si venimos de un proyecto específico
 onMounted(async () => {
+  if (route.query.project) {
+    form.value.project = route.query.project;
+  } else {
+    form.value.project = 'fondo-general';
+  }
+
   try {
-    // Cargar estado de donación compartido
-    await loadDonationStatus();
-    // Obtener métodos de pago desde backend para no exponer datos sensibles
-    const methods = await getPaymentMethods();
-    paymentMethods.value = methods;
-  } catch (err) {
-    error.value = err.message || 'Error desconocido';
-    console.error('Error fetching data:', err);
-  } finally {
-    loading.value = false;
+    const data = await getPaymentMethods();
+    if (data?.methods) {
+      paymentMethods.value = data.methods;
+    }
+  } catch (error) {
+    console.error("Error cargando métodos:", error);
+    // Fallback local robusto por si el API falla (offline o error servidor)
+    paymentMethods.value = [
+      {
+        id: "zelle",
+        name: "Zelle",
+        icon: "🇺🇸",
+        details: [
+          { label: "donations.methods.email", value: "zelle@rotarysc.org", copyable: true },
+          { label: "donations.methods.holder", value: "Rotary San Cristóbal", copyable: false }
+        ]
+      },
+      {
+        id: "pagomovil",
+        name: "Pago Móvil",
+        icon: "⿽",
+        details: [
+          { label: "donations.methods.bank", value: "Bancamiga (0172)", copyable: false },
+          { label: "donations.methods.phone", value: "04141234567", copyable: true },
+          { label: "donations.methods.rif", value: "J-123456789", copyable: true }
+        ]
+      }
+    ];
   }
 });
+
+
+// Función simple de copiar
+// Usamos el composable useClipboard importado arriba
+const submitReport = async () => {
+  loading.value = true;
+  
+  try {
+    await reportPayment(form.value);
+    
+    // Si todo sale bien:
+    setTimeout(() => {
+      loading.value = false;
+      router.push('/gracias'); 
+    }, 500);
+
+  } catch (error) {
+    console.error("Error enviando reporte:", error);
+    loading.value = false;
+    showToast("Hubo un error enviando el reporte. Por favor intenta de nuevo.", "error");
+  }
+};
 </script>
 
-<style scoped>
+
+<style scoped lang="scss">
 .donation-page {
+  background-color: #f4f6f9;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-color);
 }
 
-.donation-content {
-  flex: 1 1 auto;
-  background: #fff;
+.header-spacer {
+  height: 110px; /* Aumentado de 80px para dar espacio al nuevo padding del Navbar */
+  background: var(--rotary-blue);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 20px 48px;
+.page-title {
+  color: var(--rotary-blue);
+  font-size: 2.5rem;
+  margin-bottom: 8px;
 }
 
-.progress-section {
-  background-color: var(--rotary-blue);
-  color: #fff;
-  padding: 28px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 720px;
-  margin: 0 auto 24px;
-  text-align: center;
+.subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
 }
 
-.progress-section h1 { color: #fff; margin: 0 0 8px 0; }
-.progress-section p { color: rgba(255,255,255,0.9); margin: 0 0 12px 0; }
-
-.donation-summary { margin-top: 16px; font-size: 1.05rem; }
-.donation-summary p { color: #fff; }
-
-.methods-section { margin-top: 12px; }
-.methods-title { text-align: center; margin: 0 0 16px 0; }
-.methods-grid {
+.donation-layout {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+
+  @media(max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
-.method-card {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 12px;
-  padding: 16px;
+/* Pasos */
+.step-item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  transition: transform .15s ease, box-shadow .15s ease;
+  gap: 16px;
+  margin-bottom: 24px;
 }
-.method-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
-.method-logo { width: 48px; height: 48px; object-fit: contain; }
-.method-name { font-weight: 700; }
 
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
+.step-number {
+  background: var(--rotary-gold);
+  color: var(--rotary-blue);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  z-index: 1000;
+  font-weight: 800;
+  font-size: 1.2rem;
+  flex-shrink: 0;
 }
-.modal-content {
-  background: #fff;
-  width: 100%;
-  max-width: 560px;
+
+.step-content h3 { margin: 0 0 4px 0; color: var(--rotary-blue); }
+.step-content p { margin: 0; color: #666; font-size: 0.95rem; }
+
+/* Acordeón de Métodos */
+.methods-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.method-card {
+  background: white;
+  border: 1px solid #ddd;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-}
-.modal-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid rgba(0,0,0,0.08); }
-.modal-close { background: transparent; border: none; font-size: 1.25rem; cursor: pointer; }
-.modal-body { padding: 16px; }
-.modal-description { margin: 0 0 10px 0; }
-.fields-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.field-row { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 8px; }
-.field-label { font-weight: 600; }
-.field-value { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; }
-.copy-btn { padding: 6px 10px; border: 1px solid rgba(0,0,0,0.12); border-radius: 8px; background: #f7f7f7; cursor: pointer; }
+  cursor: pointer;
+  transition: all 0.2s;
 
-/* Responsive */
-@media (max-width: 900px) {
-  .methods-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 600px) {
-  .methods-grid { grid-template-columns: 1fr; }
-  .progress-section { padding: 20px; }
+  &.active {
+    border-color: var(--rotary-blue);
+    box-shadow: 0 4px 12px rgba(23,69,143,0.1);
+  }
 }
 
-.loading-message, .error-message {
-  margin: 14px 0; text-align: center;
+.method-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  color: #333;
 }
 
-.error-message {
-  color: #d9534f; background: #f2dede; border: 1px solid #ebccd1; padding: 12px; border-radius: 8px;
+.method-icon { font-size: 1.5rem; }
+.arrow-icon { margin-left: auto; font-size: 0.8rem; color: #999; }
+
+.method-details {
+  background: #f9fcff;
+  padding: 16px;
+  border-top: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  
+  &:last-child { margin-bottom: 0; }
+}
+
+.label { color: #666; }
+.value { font-family: monospace; font-weight: 600; color: #333; }
+.copyable { cursor: pointer; color: var(--rotary-blue); }
+
+/* Formulario */
+.form-card {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.donation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: var(--rotary-blue);
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+  input { width: auto; }
+  label { margin: 0; font-weight: 400; font-size: 0.9rem; }
+}
+
+.btn-submit {
+  background: var(--rotary-blue);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #123670;
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 }
 </style>
-

@@ -30,7 +30,18 @@ coverage
 *.tsbuildinfo
 
 .env
+.env.*
+!.env.example
 .DS_Store
 Thumbs.db
-yarn.lock
-pnpm-lock.yaml
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.python-version
+
+api/__pycache__/

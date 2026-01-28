@@ -2,10 +2,9 @@
   <div class="home-container">
     <NavigationBar />
     <HeroSection /> 
-    <InfoCard />
-    <FeatureCards />
-    <CallToActionSection />
-    <MapSection />
+    <BrandIntro />
+    <FeaturedProjects />
+    <ImpactMetrics />
     <FooterSection />
   </div>
 </template>
@@ -13,16 +12,16 @@
 <script setup>
 import NavigationBar from '@/components/NavigationBar.vue';
 import HeroSection from '@/components/HeroSection.vue';
-import InfoCard from '@/components/InfoCard.vue';
-import FeatureCards from '@/components/FeatureCards.vue';
-import CallToActionSection from '@/components/CallToActionSection.vue';
+import BrandIntro from '@/components/BrandIntro.vue';
+import FeaturedProjects from '@/components/FeaturedProjects.vue';
+import ImpactMetrics from '@/components/ImpactMetrics.vue';
 import FooterSection from '@/components/FooterSection.vue';
-import MapSection from '@/components/MapSection.vue';
 </script>
 
 <style scoped>
 .home-container {
   min-height: 100vh;
-  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
 }
 </style>
